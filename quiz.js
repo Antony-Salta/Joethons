@@ -9,12 +9,13 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('question-button-div');
 const quizAppElement = document.getElementById('question-app');
 const resultsElement = document.createElement('div');
+const budgetElement = document.getElementById('current-budget');
 resultsElement.setAttribute('id', 'results');
 resultsElement.classList.add('results', 'hide');
 quizAppElement.appendChild(resultsElement);
 
 let shuffledQuestions, currentQuestionIndex;
-let score = 0;
+let budget = 0;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -65,7 +66,9 @@ function selectAnswer(selectedButton) {
 
   const correct = selectedButton.dataset.correct;
   if (correct) {
-      score++;
+      budget = budget + 100;
+      budgetElement.innerHTML = `£${budget}`;
+
   }
   setStatusClass(selectedButton, correct);
 
@@ -100,7 +103,7 @@ function concludeQuiz() {
   resultsElement.classList.remove('hide');
   resultsElement.innerHTML = `
       <h2>Quiz Completed!</h2>
-      <p>Your score: ${score} out of ${shuffledQuestions.length}</p>
+      <p>Your final budget: ${budget} out of ${shuffledQuestions.length}</p>
       <button onclick="restartQuiz()">Restart Quiz</button>
   `;
   quizAppElement.appendChild(resultsElement);
@@ -108,7 +111,7 @@ function concludeQuiz() {
 
 function restartQuiz() {
   resultsElement.classList.add('hide');
-  score = 0;
+  budget = 0;
   currentQuestionIndex = 0;
   startGame();
 }

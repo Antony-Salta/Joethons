@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -53,7 +54,7 @@ body {
 #earth-image {
 
   width: 100%;
-  height:30%
+  height:30%;
 }
 
 .main-content {
@@ -62,22 +63,18 @@ body {
 
 #question-app {
   margin: 5%;
-  width: 90%;
-  height: 90%;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 0% 5% 5% 5%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #question-div {
-  margin-bottom: 20px;
+  
 }
 
 #question {
   font-size: 24px;
-  margin-bottom: 10px;
 }
 
 .btn-grid {
@@ -87,7 +84,6 @@ body {
 }
 
 .button {
-  padding: 10px 15px;
   background-color: #007BFF;
   color: white;
   border: none;
@@ -102,7 +98,6 @@ body {
 
 #controls {
   justify-content: center;
-  margin-top: 20px;
 }
 
 #controls.show {
@@ -110,7 +105,7 @@ body {
 }
 
 #start, #next {
-  padding: 10px 20px;
+  text-align: center;
   background-color: #28A745;
   color: white;
   border: none;
@@ -134,4 +129,9 @@ body {
 .wrong {
   background-color: #dc3545; /* Red color for incorrect answers */
   color: white;
+}
+
+#quiz-title {
+  font-size: 50px;
+  text-align: center;
 }
