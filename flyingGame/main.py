@@ -29,9 +29,9 @@ def astroidClear():
     for i in range(0, len(astroidArray)):
         if astroidArray[i].x < 0 - ASTROID_SIZE or astroidArray[i].x > SCREEN_WIDTH or astroidArray[i].y > SCREEN_HEIGHT:
             indexesToDel.append(i)
-    for i in range(0, len(indexesToDel)):
-        del astroidArray[indexesToDel[i]]
-        del astroidDirectionArray[indexesToDel[i]]
+    for i in reversed(indexesToDel):
+        del astroidArray[i]
+        del astroidDirectionArray[i]
 
 
 pygame.init()
@@ -45,7 +45,7 @@ PROJECTILE_SIZE = SCREEN_WIDTH/160
 PLAYER_HEIGHT = SCREEN_HEIGHT/20
 PLAYER_WIDTH = SCREEN_HEIGHT/40
 ASTROID_SPAWN_TIME = 500
-ASTROID_SIZE = PROJECTILE_SIZE*2
+ASTROID_SIZE = PROJECTILE_SIZE*4
 
 window = pygame.display.set_mode(((SCREEN_WIDTH, SCREEN_HEIGHT)))
 player = pygame.Rect(((SCREEN_WIDTH/2 - PLAYER_WIDTH/2), (SCREEN_HEIGHT -
@@ -103,9 +103,25 @@ while run:
         if projectileArray[i]. y < 0 - PROJECTILE_SIZE:
             indexes.append(i)
 
-    for i in range(0, len(indexes)):
-        del projectileArray[indexes[i]]
+    for i in reversed(indexes):
+        del projectileArray[i]
         projectileArraySize -= 1
+
+    indexes = []
+    astroidIndexes = []
+    for i in range(0, len(projectileArray)):
+        for j in range(0, len(astroidArray)):
+            if projectileArray[i].colliderect(astroidArray[j]):
+                indexes.append(i)
+                astroidIndexes.append(j)
+
+    for i in reversed(indexes):
+        del projectileArray[i]
+        projectileArraySize -= 1
+
+    for i in reversed(astroidIndexes):
+        del astroidArray[i]
+        del astroidDirectionArray[i]
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
