@@ -2,6 +2,12 @@
 import pygame
 from sprites import Telescope, Hammer, Player
 # pygame setup
+
+planet = {
+    "Earth" : {"featherSpeed" : 100, "hammerSpeed" : 400},
+    "Mercury" : {"featherSpeed" : 100, "hammerSpeed" : 200}
+}
+
 pygame.init()
 screen_size = (1280,720)
 screen = pygame.display.set_mode(screen_size)
@@ -25,12 +31,12 @@ screen.blit(background,(0,0))
 
 interactables = pygame.sprite.Group()
 telescopeImage = pygame.image.load("explore/assets/telescope.png").convert_alpha()
-telescope = Telescope(70,90,telescopeImage, 600, 500, screen)
+telescope = Telescope(70,90,telescopeImage, 600, 500, screen, planet["Mercury"])
 interactables.add(telescope)
 
 hammerImage = pygame.image.load("explore/assets/hammer.png").convert_alpha()
-hammer = Hammer(70,90,hammerImage, 600, 500, screen)
-interactables.add(telescope)
+hammer = Hammer(60,60,hammerImage, 1000, 200, screen, planet["Earth"])
+interactables.add(hammer)
 
 
 while running:
