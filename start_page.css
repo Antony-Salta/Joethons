@@ -1,8 +1,10 @@
 body, html {
+  padding: 0;
+  margin: 0;
   width: 100%;
 }
 body {
-  margin: 0 auto;
+  margin: 0;
   background-image: url(acrossSpaceAnimation.gif);
   background-size: cover;
   font-family: 'Courier New', monospace;
@@ -10,8 +12,7 @@ body {
 
 .main-content {
   background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
-  margin: 10% 20%;
-  padding: 10% 5%;
+  margin: 5% 10%; 
   padding-top: 1%;
   border-radius: 30px;
 }
@@ -23,7 +24,7 @@ body {
 }
 
 .title-box {
-  margin-top: 5%;
+  margin: 5%;
   background-color: black;
   color: white;
   padding: 1%;
@@ -35,14 +36,32 @@ body {
 }
 
 .desc-box {
-  margin-top: 5%;
+  margin: 5%;
   background-color: black;
   color: white;
   padding: 1%;
   border-radius: 20px;
 }
 
-#start-button {
-  background-color: #222;
+.button-box {
+  margin: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  text-align: center;
+}
 
+#start-button {
+  margin-bottom: 5%;
+  background-color: #222;
+  font-family: 'Courier New', monospace;
+  color: white;
+  font-size: 30px;
+  padding: 5% 10%;
+  border-radius: 10px;
+  border: 0;
+}
+
+#start-button:hover {
+  background-color: #333;
+  cursor: pointer;
 }
