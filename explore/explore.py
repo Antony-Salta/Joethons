@@ -1,11 +1,11 @@
 # Example file showing a circle moving on screen
 import pygame
-from sprites import Telescope, Hammer, Player
+from sprites import Telescope, Hammer, Thermometer, Player
 # pygame setup
 
 planet = {
-    "Earth" : {"featherSpeed" : 100, "hammerSpeed" : 400},
-    "Mercury" : {"featherSpeed" : 100, "hammerSpeed" : 200}
+    "Earth" : {"featherSpeed" : 100, "hammerSpeed" : 400, "maxTemp" : 57.2, "minTemp": -89.2},
+    "Mercury" : {"featherSpeed" : 133, "hammerSpeed" : 133, "maxTemp" : 420, "minTemp": -170}
 }
 
 pygame.init()
@@ -37,6 +37,10 @@ interactables.add(telescope)
 hammerImage = pygame.image.load("explore/assets/hammer.png").convert_alpha()
 hammer = Hammer(60,60,hammerImage, 1000, 200, screen, planet["Earth"])
 interactables.add(hammer)
+
+thermometerImage = pygame.image.load("explore/assets/hotThermometer.png").convert_alpha()
+thermometer = Thermometer(50,70,thermometerImage,1000,600,screen,planet["Earth"])
+interactables.add(thermometer)
 
 
 while running:

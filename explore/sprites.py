@@ -298,3 +298,108 @@ class Hammer (Interactable):
                     
         return True
             
+            
+class Thermometer(Interactable):
+    def __init__(self, height, width, image, x, y, screen, planet):
+        super().__init__(height, width, image, x, y, screen, planet)
+    
+
+    def interact(self ):
+        if self.interacted:
+            return False
+        self.interacted = True  
+        
+        screen_size = (1280,720)
+        clock = pygame.time.Clock()
+        running = True
+        timePassed = 0
+        dt = 0
+
+        background = pygame.image.load("explore/assets/thermometerEarth.png").convert_alpha()
+        background = pygame.transform.scale(background, screen_size)
+        
+        
+        exitFont = pygame.font.SysFont("Verdana", 60)
+        exitButton = exitFont.render(" X ", True, (255,0,0), (0,0,0))
+        exitRect = exitButton.get_rect()
+        exitRect.x = screen_size[0] - exitButton.get_width()
+        exitRect.y = 0
+        
+        font = pygame.font.SysFont("Verdana", 20)
+        text = """Nice and mild.
+        The highest temperature on Earth recordeed was 57.2C, 
+        and the lowest temperature recorder was -89.2C.
+        Compared to other planets, this is very mild, 
+        and part of why Earth is said to be in the 
+        "Goldilocks zone" of the solar system.
+        Not too hot, or too cold!"""
+        
+        lineRenders, lineRects = makeMultilineText(text, font)
+        
+        maxTemp = self.planet["maxTemp"]
+        minTemp = self.planet["minTemp"]
+        average = (maxTemp + minTemp)/2
+        
+        highTemperature =average
+        lowTemperature = average
+        
+        #upDiff and downDiff are the amount that the thermometers will change by across the whole transition
+        diff = maxTemp - average
+        
+        font = pygame.font.SysFont("Fixed", 30)
+        hotThermometer = font.render("{:.3f}°C".format(highTemperature), True, (255,255,255), (0,0,0,0.1)) 
+        coldThermometer = font.render("{:.3f}°C".format(lowTemperature), True, (255,255,255), (0,0,0,0.1)) 
+        
+        hotRect = hotThermometer.get_rect()
+        coldRect = coldThermometer.get_rect()
+        
+        hotRect.x = screen_size[0] * 2/3
+        hotRect.y = screen_size[1] * 3/5
+        
+        coldRect.x = screen_size[0] * 9/16
+        coldRect.y = screen_size[1] * 7/8
+        
+        countdown = 7
+        timePassed = 0
+        
+        self.screen.blit(background,(0,0))
+        
+        while running:
+            # poll for events
+            # pygame.QUIT event means the user clicked X to close your window
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type == pygame.MOUSEBUTTONDOWN: 
+                    print(pygame.mouse.get_pos())
+                    print(exitRect)
+                    if exitRect.collidepoint(pygame.mouse.get_pos()):
+                        print("clicked the thing")
+                        running = False
+            
+            self.screen.blit(background,(0,0))
+
+            
+            # flip() the display to put your work on screen
+            
+            if(highTemperature  + (dt/countdown) * diff < maxTemp):
+                highTemperature += (dt/countdown) * diff
+                lowTemperature -= (dt/countdown) * diff  
+            else:
+                for i, lineRender in enumerate(lineRenders):
+                    self.screen.blit(lineRender, lineRects[i])
+            
+            hotThermometer = font.render("{:.1f}°C".format(highTemperature), True, (255,255,255), (0,0,0,0.1)) 
+            coldThermometer = font.render("{:.1f}°C".format(lowTemperature), True, (255,255,255), (0,0,0,0.1)) 
+
+            self.screen.blit(exitButton, exitRect)
+            self.screen.blit(hotThermometer, hotRect)
+            self.screen.blit(coldThermometer, coldRect)
+            pygame.display.update()
+            # limits FPS to 60
+            # dt is delta time in seconds since last frame, used for framerate-
+            # independent physics.
+            dt = clock.tick(60) / 1000
+            timePassed += dt   
+                    
+        return True
