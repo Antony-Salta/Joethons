@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Solar System Explorer</title>
+        <link rel="stylesheet" href="./builderStyles.css" />
+    </head>
+    <body>
+        <!-- section for budget, run and sim buttons -->
+        <section>
+            <div class="builderHeader">
+                <div class="budgetBox">
+                    <p>$1000000</p>
+                </div>
+                <div class="progressButtons">
+                    <button>Simulate</button>
+                    <button>Run</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- section for rocket selector -->
+        <section>
+            <div>
+                <h2 class="categoryTitle">Head</h2>
+                <div class="rocketSection">
+                    <div class="statBox">
+
+                    </div>
+                    <div class="rocketPart">
+                        <button class="switchLeft">Left</button>
+                        <img src="./Images/temp_rocket_head.png"/>
+                        <button class="switchRight">Right</button>
+                    </div>
+                    <div class="statBox">
+                        <h3>Stats</h3>
+                        <p>Speed: 100</p>
+                        <p>Weight: 2200kg</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="categoryTitle">Body</h2>
+                <div class="rocketSection">
+                    <div class="statBox">
+
+                    </div>
+                    <div class="rocketPart">
+                        <button class="switchLeft">Left</button>
+                        <img src="./Images/temp_rocket_body.png"/>
+                        <button class="switchRight">Right</button>
+                    </div>
+                    <div class="statBox">
+                        <h3>Stats</h3>
+                        <p>Strength: 100</p>
+                        <p>Weight: 5600kg</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="categoryTitle">Thrust</h2>
+                <div class="rocketSection">
+                    <div class="statBox">
+
+                    </div>
+                    <div class="rocketPart">
+                        <button class="switchLeft">Left</button>
+                        <img src="./Images/temp_rocket_thrust.png"/>
+                        <button class="switchRight">Right</button>
+                    </div>
+                    <div class="statBox">
+                        <h3>Stats</h3>
+                        <p>Thrust: 100</p>
+                        <p>Fuel Consumption: 1l/s</p>
+                        <p>Weight: 300kg</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section for protection choice -->
+        <section>
+            <h2 class="categoryTitle">Protection</h2>
+            <div class="centeredOptions">
+                <input type="checkbox">
+                <label>Acid Protection</label>
+                <input type="checkbox">
+                <label>Heat Protection</label>
+                <input type="checkbox">
+                <label>Pressure Protection</label>
+            </div>
+        </section>
+
+        <!-- section for fuel -->
+        <section>
+            <h2 class="categoryTitle">Fuel</h2>
+            <div class="centeredOptions">
+                <p>Fuel: 1000l</p>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                </div>
+                <p>Weight: 500kg</p>
+            </div>
+        </section>
+    </body>
+</html>
