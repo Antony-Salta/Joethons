@@ -1,0 +1,7 @@
+body, html {
+  width: 100%
+}
+body {
+  background-image: url(HomeScreen.png);
+  background-size: cover;
+}
