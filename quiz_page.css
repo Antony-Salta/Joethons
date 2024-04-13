@@ -64,6 +64,7 @@ body {
 #question-app {
   margin: 5%;
   padding: 0% 5% 5% 5%;
+  padding-top: 1%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -75,6 +76,11 @@ body {
 
 #question, #question-number {
   font-size: 24px;
+}
+
+.btn {
+  padding: 5%;
+  font-size: 20px;
 }
 
 .btn-grid {

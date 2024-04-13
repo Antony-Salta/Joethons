@@ -47,7 +47,7 @@ function resetState() {
 }
 
 function showQuestion(question) {
-  questionNumberElement.innerHTML = `Question ${currentQuestionIndex+1}:`;
+  questionNumberElement.innerHTML = `Question ${currentQuestionIndex+1} / ${shuffledQuestions.length}:`;
   questionElement.innerText = question.question;
   question.answers.forEach(answer => {
       const button = document.createElement('button');
@@ -143,12 +143,66 @@ const questions = [{
   ]
 },
 {
+  "question": "How many hours are in a day on Earth?",
+  "answers": [
+    { "text": "12", "correct": false},
+    { "text": "20", "correct": false},
+    { "text": "30", "correct": false},
+    { "text": "24", "correct": true}
+  ]
+},
+{
+  "question": "Why is a day the length that it is?",
+  "answers": [
+    { "text": "Time taken for the earth to spin once", "correct": true},
+    { "text": "Time taken for the earth to go around the sun", "correct": false},
+    { "text": "Time taken for moon to go around the earth", "correct": false},
+    { "text": "Time taken for sun to go around the earth.", "correct": false}
+  ]
+},
+{
+  "question": "What is Earth named after?",
+  "answers": [
+    { "text": "Roman God Terra", "correct": true},
+    { "text": "Greek God Gaia", "correct": false},
+    { "text": "Itself", "correct": false},
+    { "text": "The Middle English word Ertha", "correct": false}
+  ]
+},
+{
+  "question": "How many species are there on Earth?",
+  "answers": [
+    { "text": "Around 1.5 million", "correct": false},
+    { "text": "Around 2.1 million", "correct": true},
+    { "text": "Around 4.6 million", "correct": false},
+    { "text": "We aren't fully sure", "correct": true}
+  ]
+},
+{
+  "question": "What moon phase is this?",
+  "answers": [
+    { "text": "Full Moon", "correct": false},
+    { "text": "New Moon", "correct": false},
+    { "text": "Crescent", "correct": true},
+    { "text": "Gibbous", "correct": false}
+  ]
+},
+{
   "question": "What is the gravity of Earth?",
   "answers": [
     { "text": "5.0 m/s^2", "correct": false},
     { "text": "13.1 m/s^2", "correct": false},
     { "text": "9.8 m/s^2", "correct": true},
     { "text": "11.7 m/s^2", "correct": false}
+  ]
+},
+{
+  "question": "How many Earths can fit into the Sun?",
+  "answers": [
+    { "text": "Around 3 million", "correct": false},
+    { "text": "Around 1.3 million", "correct": true},
+    { "text": "Around 2.2 million", "correct": false},
+    { "text": "Around 4.2 million", "correct": false}
   ]
 },
 {
