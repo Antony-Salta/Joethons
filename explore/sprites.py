@@ -237,8 +237,9 @@ class Hammer (Interactable):
         self.screen.blit(background,(0,0))
 
         bothDown = False
+        spacePressed = False
         
-        
+        prompt = font.render("Press space to drop the hammer and feather.", True, (255,255,255), (0,0,0,0)).convert_alpha()
         while running:
             # poll for events
             # pygame.QUIT event means the user clicked X to close your window
@@ -257,20 +258,27 @@ class Hammer (Interactable):
             
             # flip() the display to put your work on screen
             
+            keys = pygame.key.get_pressed()
             
-            if bothDown:
-                for i, lineRender in enumerate(lineRenders):
-                    self.screen.blit(lineRender, lineRects[i])
-                
-            else:
-                if hammerRect.y <= screen_size[1] * 3/4:
-                    hammerRect.y += self.planet["hammerSpeed"] * dt
-                    hammerTime += dt
-                if featherRect.y <= screen_size[1] * 3/4:
-                    featherRect.y += self.planet["featherSpeed"] * dt
-                    featherTime += dt
+            if(keys[pygame.K_SPACE]):
+                spacePressed = True
+            
+            if spacePressed:
+                if bothDown:
+                    for i, lineRender in enumerate(lineRenders):
+                        self.screen.blit(lineRender, lineRects[i])
+                    
                 else:
-                    bothDown = True
+                    if hammerRect.y <= screen_size[1] * 3/4:
+                        hammerRect.y += self.planet["hammerSpeed"] * dt
+                        hammerTime += dt
+                    if featherRect.y <= screen_size[1] * 3/4:
+                        featherRect.y += self.planet["featherSpeed"] * dt
+                        featherTime += dt
+                    else:
+                        bothDown = True
+            else:
+                self.screen.blit(prompt, (screen_size[0] /2 - prompt.get_width()/2, 0))
                 
             featherTimer = font.render("{:.3f}".format(featherTime), True, (255,255,255), (0,0,0,0.1)) 
             hammerTimer = font.render("{:.3f}".format(hammerTime), True, (255,255,255), (0,0,0,0.1))
