@@ -10,12 +10,14 @@ const answerButtonsElement = document.getElementById('question-button-div');
 const quizAppElement = document.getElementById('question-app');
 const resultsElement = document.createElement('div');
 const budgetElement = document.getElementById('current-budget');
+const questionNumberElement = document.getElementById('question-number');
 resultsElement.setAttribute('id', 'results');
 resultsElement.classList.add('results', 'hide');
 quizAppElement.appendChild(resultsElement);
 
 let shuffledQuestions, currentQuestionIndex;
 let budget = 0;
+let budgetAdd = 100;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -45,6 +47,7 @@ function resetState() {
 }
 
 function showQuestion(question) {
+  questionNumberElement.innerHTML = `Question ${currentQuestionIndex+1}:`;
   questionElement.innerText = question.question;
   question.answers.forEach(answer => {
       const button = document.createElement('button');
@@ -66,10 +69,15 @@ function selectAnswer(selectedButton) {
 
   const correct = selectedButton.dataset.correct;
   if (correct) {
-      budget = budget + 100;
+      budget += budgetAdd;
       budgetElement.innerHTML = `£${budget}`;
+      budgetAdd += 100;
 
   }
+  else {
+    budgetAdd = 100;
+  }
+
   setStatusClass(selectedButton, correct);
 
   setTimeout(() => {
@@ -78,7 +86,7 @@ function selectAnswer(selectedButton) {
       } else {
           concludeQuiz();
       }
-  }, 1000); // Adjust delay as needed
+  }, 1000); 
  
 }
 
@@ -116,7 +124,44 @@ function restartQuiz() {
   startGame();
 }
 
-const questions = [
+const questions = [{
+  "question": "What allows us to breathe on Earth?",
+  "answers": [
+    { "text": "Oxygen", "correct": true},
+    { "text": "Magic", "correct": false},
+    { "text": "Nitrogen", "correct": false},
+    { "text": "Space", "correct": false}
+  ]
+},
+{
+  "question": "What is the average temperature of Earth?",
+  "answers": [
+    { "text": "1000 Degrees", "correct": false},
+    { "text": "15 Degrees", "correct": true},
+    { "text": "12 Degrees", "correct": false},
+    { "text": "25 Degrees", "correct": false}
+  ]
+},
+{
+  "question": "What is the gravity of Earth?",
+  "answers": [
+    { "text": "5.0 m/s^2", "correct": false},
+    { "text": "13.1 m/s^2", "correct": false},
+    { "text": "9.8 m/s^2", "correct": true},
+    { "text": "11.7 m/s^2", "correct": false}
+  ]
+},
+{
+  "question": "How many kilometers to walk around the entire Earth?",
+  "answers": [
+    { "text": "62,631 km", "correct": false},
+    { "text": "44,111 km", "correct": false},
+    { "text": "35,021 km", "correct": false},
+    { "text": "40,007 km", "correct": true}
+  ]
+}];
+
+/*const questions = [
   {
       question: "What is a Variable in JavaScript?",
       answers: [
@@ -207,4 +252,4 @@ const questions = [
           { text: "<script link='app.js'>", correct: false }
       ]
   }
-];
+];*/

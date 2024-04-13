@@ -73,7 +73,7 @@ body {
   
 }
 
-#question {
+#question, #question-number {
   font-size: 24px;
 }
 
@@ -83,20 +83,22 @@ body {
   gap: 10px;
 }
 
-.button {
+button {
   background-color: #007BFF;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  padding: 10px 20px;
 }
 
-.button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
 #controls {
+  text-align: center;
   justify-content: center;
 }
 
@@ -105,12 +107,16 @@ body {
 }
 
 #start, #next {
+  justify-content: center;
   text-align: center;
   background-color: #28A745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px 20px;
 }
 
 #start:hover, #next:hover {
@@ -132,6 +138,10 @@ body {
 }
 
 #quiz-title {
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
+}
+
+#next {
+  margin-top: 5%;
 }
