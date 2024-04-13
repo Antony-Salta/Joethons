@@ -1,3 +1,15 @@
+body {
+    padding:0;
+    margin:0;
+    font-family: 'Courier New', monospace;
+    background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue );
+}
+
+input {
+    margin-left:1em;
+    margin-right:1em;
+}
+
 .slidecontainer {
     width: 50%; /* Width of the outside container */
 }
@@ -8,7 +20,7 @@
     appearance: none;
     width: 100%; /* Full-width */
     height: 25px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
+    background: #555; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -26,14 +38,14 @@
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
+    background: dodgerblue; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #04AA6D; /* Green background */
+    background: dodgerblue; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
 
@@ -51,8 +63,10 @@
 .budgetBox {
     padding-left: 0.5em;
     padding-right: 0.5em;
-    background-color: #eeeeee;
-    border: solid 0.2em #cccccc;
+    background-color: #333;
+    border: solid 0.2em #666;
+    color: white;
+    border-radius: 25px;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 2%;
@@ -64,17 +78,9 @@
 }
 
 .progressButtons button {
-    /*background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px; */
     margin-left: 1em;
     margin-right: 1em;
-    background-color: #04AA6D;
+    background-color: #111;
     font-size: 16px;
     text-align: center;
     text-decoration: none;
@@ -89,44 +95,80 @@
 
 }
 
+.progressButtons button:hover {
+    background-color: #222;
+    color: #eee;
+}
+
+.progressButtons button:active {
+    background-color: #111;
+    color: #aaa;
+}
+
 .builderHeader {
     display: flex;
     align-items: center;
+    padding:0;
+    margin:0;
+    background-color: black;
+    border-bottom: solid 2px #555;
 }
 
 .switchLeft {
-    background-color: #04AA6D;
+    background-color: #222;
     border: none;
     color: white;
-    padding: 10px 22px;
+    padding: 22px 22px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
     margin-right: 5%;
+    border-radius: 50%;
+    font-family:'Courier New', monospace;
 }
 
 .switchRight {
-    background-color: #04AA6D;
+    background-color: #222;
     border: none;
     color: white;
-    padding: 10px 22px;
+    padding: 22px 22px;
     border-radius: 50%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
     margin-left: 5%;
+    font-family:'Courier New', monospace;
+}
+
+.switchRight:hover, .switchLeft:hover{
+    background-color: #333;
+    color: #eee;
+}
+
+.switchRight:active , .switchLeft:active {
+    background-color: #111;
+    color: #aaa;
 }
 
 .rocketSection {
     display: flex;
     align-items: center;
     width: 100%;
+    height: 100%;
+
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .rocketPart {
-    width:60%;
+    background-color: black;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width:50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,6 +180,40 @@
 }
 
 .statBox {
+    margin-right: 5%;
     justify-content: center;
-    background-color: #04AA6D;
+    padding:5% 10%;
+    background-color: black;
+    color: white;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+}
+
+.RocketPartImage {
+    width: 100%;
+}
+
+.backgroundCircle {
+    height: 100%;
+    background-color: #222;
+    border-radius: 50%;
+    border: solid 0.2em #555;
+    padding: 15%;
+}
+
+.infoBox {
+    margin-left: 5%;
+    padding:5% 10%;
+    background-color: black;
+    color: white;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+}
+
+.footerOptions {
+    background-color: black;
+    border-top: solid 0.2em #555;
+    color: white;
+    margin: 0;
+    padding-bottom:5%;
 }

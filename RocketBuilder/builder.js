@@ -4,19 +4,19 @@ jsonData = `{
             "speed":87,
             "weight":2050,
             "cost":890,
-            "image":"./Images/temp_rocket_head.png"
+            "image":"./Images/RocketTop1.png"
         },
         {
             "speed":95,
             "weight":2150,
             "cost":950,
-            "image":"./Images/temp_rocket_head.png"
+            "image":"./Images/RocketTop2.png"
         },
         {
             "speed":92,
             "weight":2250,
             "cost":920,
-            "image":"./Images/temp_rocket_head.png"
+            "image":"./Images/RocketTop3.png"
         }
     ],
     "bodies" :[
@@ -24,19 +24,19 @@ jsonData = `{
             "strength":120,
             "weight":1100,
             "cost":1050,
-            "image":"./Images/temp_rocket_body.png"
+            "image":"./Images/RocketBody1.png"
         },
         {
             "strength":115,
             "weight":1050,
             "cost":1000,
-            "image":"./Images/temp_rocket_body.png"
+            "image":"./Images/RocketBody2.png"
         },
         {
             "strength":110,
             "weight":1000,
             "cost":950,
-            "image":"./Images/temp_rocket_body.png"
+            "image":"./Images/RocketBody3.png"
         }
     ],
     "thrusts": [
@@ -44,19 +44,19 @@ jsonData = `{
             "thrust":105,
             "weight":950,
             "cost":980,
-            "image":"./Images/temp_rocket_thrust.png"
+            "image":"./Images/RocketThruster1.png"
         },
         {
             "thrust":100,
             "weight":1000,
             "cost":1000,
-            "image":"./Images/temp_rocket_thrust.png"
+            "image":"./Images/RocketThruster2.png"
         },
         {
             "thrust":98,
             "weight":1050,
             "cost":1020,
-            "image":"./Images/temp_rocket_thrust.png"
+            "image":"./Images/RocketThruster3.png"
         }
     ],
     "protection" : {

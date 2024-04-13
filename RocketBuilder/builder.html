@@ -22,17 +22,23 @@
         <section>
             <!-- rocket head switcher -->
             <div>
-                <h2 class="categoryTitle">Head</h2>
                 <div class="rocketSection">
-                    <div class="paddedDiv"></div>
+                    <div class="paddedDiv">
+                        <div class="infoBox">
+                            <h2 class="categoryTitle">Rocket Top</h2>
+                            <p>This is like a super strong helmet for the rocket. It covers and protects whatever important stuff we're sending into space, making sure it stays safe and sound during the bumpy ride up.</p>
+                        </div>
+                    </div>
                     <div class="rocketPart">
                         <button class="switchLeft" onclick="rotateLeft('head')">Left</button>
-                        <img id="headImage" src="./Images/temp_rocket_head.png"/>
+                        <div class="backgroundCircle">
+                            <img id="headImage" src="./Images/temp_rocket_head.png"/>
+                        </div>
                         <button class="switchRight" onclick="rotateRight('head')">Right</button>
                     </div>
                     <div class="paddedDiv">
                         <div class="statBox">
-                            <h3>Stats</h3>
+                            <h2>Stats</h2>
                             <p id="headSpeed">Speed : 100</p>
                             <p id="headWeight">Weight : 1000kg</p>
                             <p id="headCost">Cost : £25</p>
@@ -43,17 +49,23 @@
 
             <!-- rocket body switcher -->
             <div>
-                <h2 class="categoryTitle">Body</h2>
                 <div class="rocketSection">
-                    <div class="paddedDiv"></div>
+                    <div class="paddedDiv">
+                        <div class="infoBox">
+                            <h2 class="categoryTitle">Rocket Body</h2>
+                            <p>Think of this as the rocket's body or skeleton. It's the main part of the rocket, like the frame of a car. Inside, it holds all the fuel, engines, and brains (like a computer) needed for the rocket to work.</p>    
+                        </div>
+                    </div>
                     <div class="rocketPart">
                         <button class="switchLeft" onclick="rotateLeft('body')">Left</button>
-                        <img id="bodyImage" src="./Images/temp_rocket_body.png"/>
+                        <div class="backgroundCircle">
+                            <img id="bodyImage" src="./Images/temp_rocket_body.png"/>
+                        </div>
                         <button class="switchRight" onclick="rotateRight('body')">Right</button>
                     </div>
                     <div class="paddedDiv">
                         <div class="statBox">
-                            <h3>Stats</h3>
+                            <h2>Stats</h2>
                             <p id="bodyStrength">Strength: 100</p>
                             <p id="bodyWeight">Weight: 5600kg</p>
                             <p id="bodyCost">Cost : £30</p>
@@ -64,17 +76,23 @@
 
             <!-- rocket thrust switcher -->
             <div>
-                <h2 class="categoryTitle">Thrust</h2>
                 <div class="rocketSection">
-                    <div class="paddedDiv"></div>
+                    <div class="paddedDiv">
+                        <div class="infoBox">
+                            <h2 class="categoryTitle">Rocket Thruster</h2>
+                            <p>This is the powerhouse of the rocket! It's like the rocket's super-strong legs that push it up into space. These thrusters shoot out fiery gas to make the rocket go up, up, and away!</p>
+                        </div>
+                    </div>
                     <div class="rocketPart">
-                        <button class="switchLeft" onclick="rotateLeft('thrust')"></button>
-                        <img id="thrustImage" src="./Images/temp_rocket_thrust.png"/>
-                        <button class="switchRight" onclick="rotateRight('thrust')"></button>
+                        <button class="switchLeft" onclick="rotateLeft('thrust')">Left</button>
+                        <div class="backgroundCircle">
+                            <img id="thrustImage" class="rocketPartImage" src="./Images/temp_rocket_thrust.png"/>
+                        </div>
+                        <button class="switchRight" onclick="rotateRight('thrust')">Right</button>
                     </div>
                     <div class="paddedDiv">
                         <div class="statBox">
-                            <h3>Stats</h3>
+                            <h2>Stats</h2>
                             <p id="thrustThrust">Thrust: 100</p>
                             <p id="thrustWeight">Weight: 300kg</p>
                             <p id="thrustCost">Cost : £10</p>
@@ -85,7 +103,7 @@
         </section>
 
         <!-- section for protection choice -->
-        <section>
+        <section class="footerOptions">
             <h2 class="categoryTitle">Protection</h2>
             <div class="centeredOptions">
                 <input id="acidCheckbox" type="checkbox" onclick="protectionClicked('acid')">
@@ -98,8 +116,11 @@
         </section>
 
         <!-- section for fuel -->
-        <section>
+        <section class="footerOptions">
             <h2 class="categoryTitle">Fuel</h2>
+            <div class="centeredOptions">
+                <p id="fuelCost">Fuel cost: £1000</p>
+            </div>
             <div class="centeredOptions">
                 <p id="fuelCounter">Fuel: 1000l</p>
                 <div class="slidecontainer">
@@ -107,7 +128,6 @@
                 </div>
                 <p id="fuelWeight">Weight: 500kg</p>
             </div>
-            <p id="fuelCost">Fuel cost: £1000</p>
         </section>
         <script src="./builder.js"></script>
     </body>
