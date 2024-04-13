@@ -4,12 +4,12 @@
         <title>Solar System Explorer</title>
         <link rel="stylesheet" href="./builderStyles.css" />
     </head>
-    <body>
+    <body onload="builderLoaded()">
         <!-- section for budget, run and sim buttons -->
         <section>
             <div class="builderHeader">
                 <div class="budgetBox">
-                    <p>$1000000</p>
+                    <p id="budget">$1000000</p>
                 </div>
                 <div class="progressButtons">
                     <button>Simulate</button>
@@ -20,58 +20,59 @@
 
         <!-- section for rocket selector -->
         <section>
+            <!-- rocket head switcher -->
             <div>
                 <h2 class="categoryTitle">Head</h2>
                 <div class="rocketSection">
-                    <div class="statBox">
-
-                    </div>
+                    <div class="statBox"></div>
                     <div class="rocketPart">
-                        <button class="switchLeft">Left</button>
-                        <img src="./Images/temp_rocket_head.png"/>
-                        <button class="switchRight">Right</button>
+                        <button class="switchLeft" onclick="rotateLeft('head')">Left</button>
+                        <img id="headImage" src="./Images/temp_rocket_head.png"/>
+                        <button class="switchRight" onclick="rotateRight('head')">Right</button>
                     </div>
                     <div class="statBox">
                         <h3>Stats</h3>
-                        <p>Speed: 100</p>
-                        <p>Weight: 2200kg</p>
+                        <p id="headSpeed">Speed : 100</p>
+                        <p id="headWeight">Weight : 1000kg</p>
+                        <p id="headCost">Cost : £25</p>
                     </div>
                 </div>
             </div>
+
+            <!-- rocket body switcher -->
             <div>
                 <h2 class="categoryTitle">Body</h2>
                 <div class="rocketSection">
-                    <div class="statBox">
-
-                    </div>
+                    <div class="statBox"></div>
                     <div class="rocketPart">
-                        <button class="switchLeft">Left</button>
-                        <img src="./Images/temp_rocket_body.png"/>
-                        <button class="switchRight">Right</button>
+                        <button class="switchLeft" onclick="rotateLeft('body')">Left</button>
+                        <img id="bodyImage" src="./Images/temp_rocket_body.png"/>
+                        <button class="switchRight" onclick="rotateRight('body')">Right</button>
                     </div>
                     <div class="statBox">
                         <h3>Stats</h3>
-                        <p>Strength: 100</p>
-                        <p>Weight: 5600kg</p>
+                        <p id="bodyStrength">Strength: 100</p>
+                        <p id="bodyWeight">Weight: 5600kg</p>
+                        <p id="bodyCost">Cost : £30</p>
                     </div>
                 </div>
             </div>
+
+            <!-- rocket thrust switcher -->
             <div>
                 <h2 class="categoryTitle">Thrust</h2>
                 <div class="rocketSection">
-                    <div class="statBox">
-
-                    </div>
+                    <div class="statBox"></div>
                     <div class="rocketPart">
-                        <button class="switchLeft">Left</button>
-                        <img src="./Images/temp_rocket_thrust.png"/>
-                        <button class="switchRight">Right</button>
+                        <button class="switchLeft" onclick="rotateLeft('thrust')">Left</button>
+                        <img id="thrustImage" src="./Images/temp_rocket_thrust.png"/>
+                        <button class="switchRight" onclick="rotateRight('thrust')">Right</button>
                     </div>
                     <div class="statBox">
                         <h3>Stats</h3>
-                        <p>Thrust: 100</p>
-                        <p>Fuel Consumption: 1l/s</p>
-                        <p>Weight: 300kg</p>
+                        <p id="thrustThrust">Thrust: 100</p>
+                        <p id="thrustWeight">Weight: 300kg</p>
+                        <p id="thrustCost">Cost : £10</p>
                     </div>
                 </div>
             </div>
@@ -81,11 +82,11 @@
         <section>
             <h2 class="categoryTitle">Protection</h2>
             <div class="centeredOptions">
-                <input type="checkbox">
+                <input id="acidCheckbox" type="checkbox" onclick="protectionClicked('acid')">
                 <label>Acid Protection</label>
-                <input type="checkbox">
+                <input id="heatCheckbox" type="checkbox" onclick="protectionClicked('heat')">
                 <label>Heat Protection</label>
-                <input type="checkbox">
+                <input id="pressureCheckbox" type="checkbox" onclick="protectionClicked('pressure')">
                 <label>Pressure Protection</label>
             </div>
         </section>
@@ -94,12 +95,14 @@
         <section>
             <h2 class="categoryTitle">Fuel</h2>
             <div class="centeredOptions">
-                <p>Fuel: 1000l</p>
+                <p id="fuelCounter">Fuel: 1000l</p>
                 <div class="slidecontainer">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="fuelSlider" oninput="fuelChanged(this.value)" onchange="fuelChanged(this.value)" >
                 </div>
-                <p>Weight: 500kg</p>
+                <p id="fuelWeight">Weight: 500kg</p>
             </div>
+            <p id="fuelCost">Fuel cost: £1000</p>
         </section>
+        <script src="./builder.js"></script>
     </body>
 </html>

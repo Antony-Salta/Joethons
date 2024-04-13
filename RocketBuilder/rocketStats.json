@@ -1,0 +1,62 @@
+{
+    "heads" :[
+        {
+            "speed":100,
+            "weight":2200,
+            "cost":1000,
+            "image":"./Images/temp_rocket_head.png"
+        },
+        {
+            "speed":100,
+            "weight":2200,
+            "cost":1000,
+            "image":"./Images/temp_rocket_head.png"
+        },
+        {
+            "speed":100,
+            "weight":2200,
+            "cost":1000,
+            "image":"./Images/temp_rocket_head.png"
+        }
+    ],
+    "bodies" :[
+        {
+            "strength":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_body.png"
+        },
+        {
+            "strength":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_body.png"
+        },
+        {
+            "strength":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_body.png"
+        }
+    ],
+    "thrusts": [
+        {
+            "thrust":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_thrust.png"
+        },
+        {
+            "thrust":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_thrust.png"
+        },
+        {
+            "thrust":100,
+            "weight":1000,
+            "cost":1000,
+            "image":"./Images/temp_rocket_thrust.png"
+        }
+    ]
+}
