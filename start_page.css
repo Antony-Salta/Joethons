@@ -1,7 +1,48 @@
 body, html {
-  width: 100%
+  width: 100%;
 }
 body {
-  background-image: url(HomeScreen.png);
+  margin: 0 auto;
+  background-image: url(acrossSpaceAnimation.gif);
   background-size: cover;
+  font-family: 'Courier New', monospace;
+}
+
+.main-content {
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
+  margin: 10% 20%;
+  padding: 10% 5%;
+  padding-top: 1%;
+  border-radius: 30px;
+}
+
+#title {
+  margin: 0 10%;
+  font-size: 60px;
+  text-align: center;
+}
+
+.title-box {
+  margin-top: 5%;
+  background-color: black;
+  color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+#description {
+  font-size: 30px;
+}
+
+.desc-box {
+  margin-top: 5%;
+  background-color: black;
+  color: white;
+  padding: 1%;
+  border-radius: 20px;
+}
+
+#start-button {
+  background-color: #222;
+
 }
