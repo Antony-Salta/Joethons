@@ -170,9 +170,12 @@ async def main():
             for i in reversed(indexes):
                 del projectileArray[i]
 
-            for i in reversed(astroidIndexes):
-                del astroidArray[i]
-                del astroidDirectionArray[i]
+            try:
+                for i in reversed(astroidIndexes):
+                    del astroidArray[i]
+                    del astroidDirectionArray[i]
+            except IndexError:
+                print("Asteroid is not happy")
 
             for i in range(0, len(astroidArray)):
                 if player.colliderect(astroidArray[i]):
@@ -195,9 +198,9 @@ async def main():
             # window.fill((0, 0, 0))
             textSurface = font.render(
                 "Congratulations! You made it through the asteroids!", False, (255, 255, 255))
+            window.blit(background, (0, 0))
             window.blit(textSurface, (SCREEN_WIDTH/2 - textSurface.get_width() /
                         2, SCREEN_HEIGHT/2 - textSurface.get_height()/2))
-            window.blit(background, (0, 0))
         pygame.display.update()
         dt = CLOCK.tick(FPS)/1000.0
         await asyncio.sleep(0)
