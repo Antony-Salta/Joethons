@@ -48,6 +48,35 @@ def drawMainScreen():
         SCREEN_WIDTH - textSurface.get_width(), 0))
 
 
+def resetGameState():
+    global alive, LIVES, player, SCREEN_WIDTH, PLAYER_WIDTH, SCREEN_HEIGHT, PLAYER_HEIGHT, projectileArray, astroidArray, start, distance
+    alive = True
+    LIVES = 3
+    player = pygame.Rect(((SCREEN_WIDTH/2 - PLAYER_WIDTH/2), (SCREEN_HEIGHT - 2.5*(
+        PLAYER_HEIGHT)), (PLAYER_WIDTH), (PLAYER_HEIGHT)))
+    projectileArray = []
+    astroidArray = []
+    start = False
+    distance = distanceTotal
+
+
+def setupGameOver():
+    global window, font, SCREEN_WIDTH, SCREEN_HEIGHT, textSurface
+    window.fill((0, 0, 0))
+    retrySurface = font.render("RETRY", False, (255, 255, 255))
+    retryRect = retrySurface.get_rect()
+    retryRect.x = SCREEN_WIDTH/2 - retryRect.width/2
+    retryRect.y = 0.75*SCREEN_HEIGHT
+    pygame.draw.rect(window, (0, 255, 0), retryRect)
+    textSurface = font.render(
+        "You crashed! Game Over!", False, (255, 255, 255))
+    window.blit(textSurface, (SCREEN_WIDTH/2 - textSurface.get_width() /
+                              2, SCREEN_HEIGHT/2 - textSurface.get_height()/2))
+    window.blit(retrySurface, retryRect)
+    pygame.display.update()
+    return retryRect
+
+
 pygame.init()
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -94,6 +123,10 @@ while run:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_SPACE:
                 start = True
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if retryRect.collidepoint(pygame.mouse.get_pos()):
+                setupGameOver()
+                resetGameState()
 
     if alive and distance > 0 and start:
         currentTime = pygame.time.get_ticks()
@@ -182,12 +215,11 @@ while run:
                 break
 
     if alive == False:
-        window.fill((0, 0, 0))
-        textSurface = font.render(
-            "You crashed! Game Over!", False, (255, 255, 255))
-        window.blit(textSurface, (SCREEN_WIDTH/2 - textSurface.get_width() /
-                    2, SCREEN_HEIGHT/2 - textSurface.get_height()/2))
-
+        retryRect = setupGameOver()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if retryRect.collidepoint(pygame.mouse.get_pos()):
+                    resetGameState()
     if distance == 0:
         window.fill((0, 0, 0))
         textSurface = font.render(
