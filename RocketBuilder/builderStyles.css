@@ -263,3 +263,23 @@ input {
     color: white;
     text-align:center;
 }
+
+#simulationText {
+    color: red;
+}
+
+.protectionChoice {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    width: 33%
+}
+.protectionChoice img {
+    width:50%;
+    margin:auto;
+}
+
+.protectionOptions {
+    display: flex;
+    flex-direction: row;
+}

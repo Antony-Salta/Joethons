@@ -1,73 +1,73 @@
 jsonData = `{
     "heads" :[
         {
-            "speed":87,
-            "weight":2050,
-            "cost":890,
+            "speed":72,
+            "weight":200,
+            "cost":400,
             "image":"./Images/RocketTop1.png"
         },
         {
-            "speed":95,
-            "weight":2150,
-            "cost":950,
+            "speed":91,
+            "weight":300,
+            "cost":750,
             "image":"./Images/RocketTop2.png"
         },
         {
-            "speed":92,
-            "weight":2250,
-            "cost":920,
+            "speed":45,
+            "weight":100,
+            "cost":150,
             "image":"./Images/RocketTop3.png"
         }
     ],
     "bodies" :[
         {
             "strength":120,
-            "weight":1100,
-            "cost":1050,
+            "weight":1250,
+            "cost":900,
             "image":"./Images/RocketBody1.png"
         },
         {
-            "strength":115,
-            "weight":1050,
-            "cost":1000,
+            "strength":55,
+            "weight":1000,
+            "cost":600,
             "image":"./Images/RocketBody2.png"
         },
         {
             "strength":110,
-            "weight":1000,
-            "cost":950,
+            "weight":1500,
+            "cost":1200,
             "image":"./Images/RocketBody3.png"
         }
     ],
     "thrusts": [
         {
-            "thrust":105,
-            "weight":950,
-            "cost":980,
+            "thrust":64,
+            "weight":400,
+            "cost":250,
             "image":"./Images/RocketThruster1.png"
         },
         {
-            "thrust":100,
-            "weight":1000,
-            "cost":1000,
+            "thrust":82,
+            "weight":700,
+            "cost":400,
             "image":"./Images/RocketThruster2.png"
         },
         {
             "thrust":98,
-            "weight":1050,
-            "cost":1020,
+            "weight":600,
+            "cost":400,
             "image":"./Images/RocketThruster3.png"
         }
     ],
     "protection" : {
         "acid": {
-            "cost":1000
+            "cost":500
         },
         "heat": {
-            "cost":1000
+            "cost":500
         },
         "pressure": {
-            "cost":1000
+            "cost":500
         }
     }
 }`
@@ -75,17 +75,17 @@ jsonData = `{
 planetData = `{
     "earth":{
         "enter":{
-            "atmosphere":10,
+            "atmosphere":45,
             "acid":false,
             "heat":false,
             "pressure":false
         },
-        "exit":10,
+        "exit":35,
         "distanceFromSun":1000
     },
     "mercury":{
         "enter": {
-            "atmosphere":20,
+            "atmosphere":50,
             "acid": false,
             "heat": true,
             "pressure":false
@@ -242,17 +242,19 @@ function adjustBudget() {
 }
 
 function runSimulation() {
-    const fuelWeight = parseInt(document.getElementById("fuelCost").innerHTML.toString().replace("Weight: ", "").replace("kg",""));
+    const fuelWeight = document.getElementById("fuelWeight").innerHTML.toString().replace("Weight: ", "").replace("kg","");
     const mass = rocketHeads[headPtr].weight + rocketBodies[bodyPtr].weight + rocketThrusts[thrustPtr].weight + fuelWeight;
-    const fuel = parseInt(document.getElementById("fuelCost").innerHTML.toString().replace("Fuel: ", "").replace("litres",""));
+    const fuel = document.getElementById("fuelCost").innerHTML.toString().replace("Fuel Cost: £", "").replace("litres","");
     const speed = rocketHeads[headPtr].speed;
     const thrust = rocketThrusts[thrustPtr].thrust;
     const strength = rocketBodies[bodyPtr].strength;
 
-    const resistance = (100 - speed)/100;
-    const weight = mass * 9.8;
-    const acceleration = thrust - (weight * 0.005);
+    const resistance = speed/100;
+    const weight = mass;
+    const acceleration = thrust - (weight * 0.000001);
     const exit = acceleration * resistance;
+
+    console.log(exit)
 
     document.getElementById("simulationVideo").src = "";
     document.getElementById("rocketBuilder").style.visibility = "hidden";
@@ -280,12 +282,13 @@ function runSimulation() {
             planets[targetPlanet].enter.heat && !heatProtection ||
             planets[targetPlanet].enter.pressure && !pressureProtection) {
                 // run simulation where explosion occurs on enter
-                document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
-                loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 3000);
+                document.getElementById("simulationVideo").src = "./Animations/enterExplosionAnimation.gif";
+                loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 7000);
             } else {
                 // run successful simulation    
-                document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
-                loadSimulationEnd("Congrats! Your ship successfully passed the simulation!", 3000);
+                document.getElementById("simulationVideo").src = "./Animations/successfulAnimation.gif";
+                document.getElementById("simulationText").style.color = "green";
+                loadSimulationEnd("Congrats! Your ship successfully passed the simulation!", 7000);
             }
         }
     }

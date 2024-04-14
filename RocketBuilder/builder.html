@@ -14,7 +14,7 @@
                     </div>
                     <div class="progressButtons">
                         <button onclick="runSimulation()">Simulate</button>
-                        <button>Run</button>
+                        <button id="runButton">Run</button>
                     </div>
                 </div>
             </section>
@@ -106,13 +106,25 @@
             <!-- section for protection choice -->
             <section class="footerOptions">
                 <h2 class="categoryTitle">Protection</h2>
-                <div class="centeredOptions">
-                    <input id="acidCheckbox" type="checkbox" onclick="protectionClicked('acid')">
-                    <label>Acid Protection</label>
-                    <input id="heatCheckbox" type="checkbox" onclick="protectionClicked('heat')">
-                    <label>Heat Protection</label>
-                    <input id="pressureCheckbox" type="checkbox" onclick="protectionClicked('pressure')">
-                    <label>Pressure Protection</label>
+                <div class="protectionOptions">
+                    <div class="protectionChoice">
+                        <img src="./Images/acid-icon.png" />
+                        <input id="acidCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Acid Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
+                    <div class="protectionChoice">
+                        <img src="./Images/heat-icon.png" />
+                        <input id="heatCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Heat Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
+                    <div class="protectionChoice">
+                        <img src="./Images/pressure-icon.png" />
+                        <input id="pressureCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Pressure Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
                 </div>
             </section>
 
