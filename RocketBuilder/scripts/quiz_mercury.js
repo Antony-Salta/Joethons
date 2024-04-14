@@ -112,16 +112,28 @@ function concludeQuiz() {
   resultsElement.innerHTML = `
       <h2>Quiz Completed!</h2>
       <p>Your final budget: ${budget}</p>
-      <button onclick="restartQuiz()">Build your Ship</button>
+      <button onclick="nextPage()">Build your Ship</button>
   `;
   quizAppElement.appendChild(resultsElement);
 }
 
-function restartQuiz() {
-  resultsElement.classList.add('hide');
-  budget = 0;
-  currentQuestionIndex = 0;
-  startGame();
+function nextPage() {
+  fetch("http://localhost:3000/updateStatus", {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "budget":budget,
+      "currentPlanet":"Earth",
+      "targetPlanet":"Mercury"
+    }), // body data type must match "Content-Type" header
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = '../builder.html';
+    }
+  });
 }
 
 const questions = [{

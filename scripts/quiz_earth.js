@@ -129,7 +129,7 @@ function nextPage() {
     console.log(data);
     data.budget = budget;
   })
-  window.location.href = 'builder.html';
+  window.location.href = 'builder2.html';
 }
 
 const questions = [{

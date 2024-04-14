@@ -1,5 +1,5 @@
 {
-    "budget":1000,
-    "currentPlanet":"Earth",
-    "targetPlanet":"Mercury"
+  "budget": 5500,
+  "currentPlanet": "Earth",
+  "targetPlanet": "Mercury"
 }

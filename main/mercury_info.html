@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/earth_info.css">
+  </head>
+  <body>
+    <div class="main-content">
+      <div class="left-container">
+        <p class="planet-description" id="big-description">
+
+        </p>
+        <p class="planet-description">Head over to the exploration game to get even more knowledge!</p>
+        <div class="button-box">
+          <button id="start-button" onclick="nextPage()">Continue</button>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="right-top-container">
+          <h2 id="planet-title"></h2>
+          <img src="" id="earth-gif">
+        </div>
+        <div class="right-bottom-container">
+          <ul class="planet-description">
+            <li id="bp1"></li>
+            <li id="bp2"></li>
+            <li id="bp3"></li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    <script>
+      function nextPage() {
+        window.location.href = "../quiz/quiz_page_mercury.html";
+      }
+
+      async function getFile(fileName) {
+        try {
+            const response = await fetch(
+              fileName,
+              {
+                method: 'GET',
+              },
+            );
+
+            if (!response.ok) {
+              throw new Error(`Error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            return data;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      getFile("mercury.json").then(data => {
+      console.log(data);
+      
+      document.getElementById("planet-title").innerHTML = data.planetName;
+      document.getElementById("earth-gif").setAttribute('src', data.planetGif);
+      document.getElementById("big-description").innerHTML = data.bigDescription;
+      document.getElementById("bp1").innerHTML = data.bp1;
+      document.getElementById("bp2").innerHTML = data.bp2;
+      document.getElementById("bp3").innerHTML = data.bp3;
+
+    })
+      
+    </script>
+  </body>
+</html>

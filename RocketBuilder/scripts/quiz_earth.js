@@ -137,7 +137,7 @@ function nextPage() {
   })
   .then(response => {
     if (response.ok) {
-      window.location.href = 'builder.html';
+      window.location.href = '../RocketBuilder/builder.html';
     }
   });
 }
@@ -197,11 +197,11 @@ const questions = [{
   ]
 },
 {
-  "question": "What moon phase is this?",
+  "question": "What is the name of the moon phase where you cannot see the moon?",
   "answers": [
     { "text": "Full Moon", "correct": false},
-    { "text": "New Moon", "correct": false},
-    { "text": "Crescent", "correct": true},
+    { "text": "New Moon", "correct": true},
+    { "text": "Crescent", "correct": false},
     { "text": "Gibbous", "correct": false}
   ]
 },

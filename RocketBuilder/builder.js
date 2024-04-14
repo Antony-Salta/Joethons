@@ -239,10 +239,10 @@ function runSimulation() {
                 document.getElementById("simulationVideo").src = "./Animations/FuelConsumptionExplosionAnimation.gif";
                 loadSimulationEnd("Seem you ran out of fuel!", 5000);
             } else {
-                if (planets[targetPlanet].enter.atmosphere > strength ||
-                planets[targetPlanet].enter.acid && !acidProtection ||
-                planets[targetPlanet].enter.heat && !heatProtection ||
-                planets[targetPlanet].enter.pressure && !pressureProtection) {
+                if ((planets[targetPlanet].enter.atmosphere > strength) ||
+                (planets[targetPlanet].enter.acid && !acidProtection) ||
+                (planets[targetPlanet].enter.heat && !heatProtection) ||
+                (planets[targetPlanet].enter.pressure && !pressureProtection)) {
                     // run simulation where explosion occurs on enter
                     document.getElementById("simulationVideo").src = "./Animations/enterExplosionAnimation.gif";
                     loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 7000);
