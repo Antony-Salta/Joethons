@@ -1,6 +1,10 @@
 # Joethons
 Studenthack hackathon project
 
+SCREW PYGBAG, if you want a decent demo/presentation, then git revert any commits where we add in pygbag functionality.
+e.g. git revert 19291e09 to get rid of my most recent pygbag changes and having a more working game.
+
+
 GoogleDoc: https://docs.google.com/document/d/1QXvXAc3-HRCgzc3KwoeGZFb0JM5fzWXNB9c8lS2EMSQ/edit?usp=sharing
 
 ### Credits:
