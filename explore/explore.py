@@ -2,10 +2,6 @@
 import pygame
 from sprites import Telescope, Hammer, Thermometer, Clock, Player
 import json
-import requests
-
-import asyncio
-
 # pygame setup
 
 # planets = {
@@ -88,14 +84,9 @@ import asyncio
 with open("explore/planets.json", "r") as infile: 
     planets = json.load(infile)
 
-# api_url = "http://localhost:3000/get_status"
-# response = requests.get(api_url)
-# print(response.json)
-# planet = response.json["Planet"]
 
 #TODO, change this to read from a file or something
 chosenPlanet = planets["Earth"]
-
 
 pygame.init()
 screen_size = (1280,720)
@@ -136,67 +127,44 @@ clockTimer = Clock(60,60,clockImage,300,300,screen,chosenPlanet)
 interactables.add(clockTimer)
 
 
-async def main():
-    count = 60
-
-    while True:
-        print(f"{count}: Hello from Pygame")
-        pygame.display.update()
-        await asyncio.sleep(0)  # You must include this statement in your main loop. Keep the argument at 0.
-
-        if not count:
-            pygame.quit()
-            return
-        
-        count -= 1
-        clock.tick(60)
-
-
-# async def main():
+while running:
+    # poll for events
+    # pygame.QUIT event means the user clicked X to close your window
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    screen.blit(background,(0,0))
+    #screen.blit(player, player_pos)
     
 
-
-#     while running:
-#         # poll for events
-#         # pygame.QUIT event means the user clicked X to close your window
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 running = False
-        
-#         screen.blit(background,(0,0))
-#         #screen.blit(player, player_pos)
-        
-
-#         keys = pygame.key.get_pressed()
-        
-#         if player.rect.x > screen_size[0] - player.width:
-#             player.rect.x = screen_size[0] - player.width
-#         elif player.rect.x < 0:
-#             player.rect.x = 0
-#         if player.rect.y > screen_size[1] - player.height:
-#             player.rect.y = screen_size[1] - player.height
-#         elif player.rect.y < 0:
-#             player.rect.y = 0
-        
-        
-#         # make sure you are actually able to have a spot where you only interact with one interactable. I did have it exclusive before, but then there's the issue of not being able to redo experiments, even though you can close out of them whenever 
-#         if(keys[pygame.K_SPACE]): 
-#             collidingSprites = pygame.sprite.spritecollide(player, interactables, False)
-#             if collidingSprites != None and len(collidingSprites) > 0:
-#                 collidingSprites[0].interact()
-        
-#         # flip() the display to put your work on screen
-#         interactables.update()
-#         interactables.draw(screen)
-#         playerGroup.update(keys, dt)
-#         playerGroup.draw(screen)
-#         pygame.display.update()
-#         # limits FPS to 60
-#         # dt is delta time in seconds since last frame, used for framerate-
-#         # independent physics.
-#         dt = clock.tick(60) / 1000
-#         await asyncio.sleep(0)
-
-#     pygame.quit()
+    keys = pygame.key.get_pressed()
     
-asyncio.run(main())
+    if player.rect.x > screen_size[0] - player.width:
+        player.rect.x = screen_size[0] - player.width
+    elif player.rect.x < 0:
+        player.rect.x = 0
+    if player.rect.y > screen_size[1] - player.height:
+        player.rect.y = screen_size[1] - player.height
+    elif player.rect.y < 0:
+        player.rect.y = 0
+    
+    
+    # make sure you are actually able to have a spot where you only interact with one interactable. I did have it exclusive before, but then there's the issue of not being able to redo experiments, even though you can close out of them whenever 
+    if(keys[pygame.K_SPACE]): 
+        collidingSprites = pygame.sprite.spritecollide(player, interactables, False)
+        if collidingSprites != None and len(collidingSprites) > 0:
+            collidingSprites[0].interact()
+    
+    # flip() the display to put your work on screen
+    interactables.update()
+    interactables.draw(screen)
+    playerGroup.update(keys, dt)
+    playerGroup.draw(screen)
+    pygame.display.update()
+    # limits FPS to 60
+    # dt is delta time in seconds since last frame, used for framerate-
+    # independent physics.
+    dt = clock.tick(60) / 1000
+
+pygame.quit()
