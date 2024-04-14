@@ -233,7 +233,7 @@ countdownStart = pygame.time.get_ticks()
 
 alive = True
 run = True
-start = False
+start = True
 dt = 0
 
 retrySurface = font.render("RETRY", False, (255, 255, 255))
