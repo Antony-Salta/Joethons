@@ -79,7 +79,8 @@ def setupGameOver():
 
 
 async def main():
-    global SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED, PROJECTILE_COOLDOWN_TIME, FPS, COUNTDOWN, CLOCK, PROJECTILE_SIZE, PLAYER_HEIGHT, PLAYER_SPEED, ASTROID_SPAWN_TIME, ASTROID_SIZE, LIVES, window, player, font, projectileArray, projectileArraySize, projectileCurrCooldown, projectileCooldownBool, astroidArray, astroidDirectionArray, timeForAstroidSpawn, distance, distanceTotal, distancePerMS, countdownStart, alive, run, start, dt, retrySurface, retryRect
+    global SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED, PROJECTILE_COOLDOWN_TIME, FPS, COUNTDOWN, CLOCK, PROJECTILE_SIZE, PLAYER_HEIGHT, PLAYER_SPEED, ASTROID_SPAWN_TIME, ASTROID_SIZE, LIVES, window, player, font, projectileArray, projectileCurrCooldown, projectileCooldownBool, astroidArray, astroidDirectionArray, timeForAstroidSpawn, distance, distanceTotal, distancePerMS, countdownStart, alive, run, start, dt, retrySurface, retryRect
+    drawMainScreen()
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -139,12 +140,11 @@ async def main():
                     player.x = SCREEN_WIDTH - PLAYER_WIDTH
             if key[pygame.K_SPACE] and projectileCurrCooldown == False:
                 projectileCurrCooldown = True
-                projectileArraySize += 1
                 projectileArray.append(pygame.Rect(
                     ((player.x + PROJECTILE_SIZE/2), player.y, PROJECTILE_SIZE, PROJECTILE_SIZE)))
 
             indexes = []
-            for i in range(0, projectileArraySize):
+            for i in range(0, len(projectileArray)):
                 pygame.draw.rect(window, (0, 255, 0), projectileArray[i])
                 projectileArray[i].move_ip(0, -5)
                 if projectileArray[i]. y < 0 - PROJECTILE_SIZE:
@@ -152,7 +152,6 @@ async def main():
 
             for i in reversed(indexes):
                 del projectileArray[i]
-                projectileArraySize -= 1
 
             indexes = []
             astroidIndexes = []
@@ -164,7 +163,6 @@ async def main():
 
             for i in reversed(indexes):
                 del projectileArray[i]
-                projectileArraySize -= 1
 
             for i in reversed(astroidIndexes):
                 del astroidArray[i]
@@ -221,7 +219,6 @@ player = pygame.Rect(((SCREEN_WIDTH/2 - PLAYER_WIDTH/2), (SCREEN_HEIGHT -
 font = pygame.font.SysFont("verdana", 30)
 
 projectileArray = []
-projectileArraySize = 0
 projectileCurrCooldown = 0
 projectileCooldownBool = False
 
@@ -236,7 +233,7 @@ countdownStart = pygame.time.get_ticks()
 
 alive = True
 run = True
-start = True
+start = False
 dt = 0
 
 retrySurface = font.render("RETRY", False, (255, 255, 255))
