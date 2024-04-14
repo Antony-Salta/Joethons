@@ -1,0 +1,285 @@
+body {
+    padding:0;
+    margin:0;
+    font-family: 'Courier New', monospace;
+    background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue );
+}
+
+input {
+    margin-left:1em;
+    margin-right:1em;
+}
+
+.slidecontainer {
+    width: 50%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #555; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: dodgerblue; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: dodgerblue; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.centeredOptions {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.categoryTitle {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.budgetBox {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    background-color: #333;
+    border: solid 0.2em #666;
+    color: white;
+    border-radius: 25px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 2%;
+}
+
+.progressButtons {
+    margin-left: auto;
+    margin-right: 10%;
+}
+
+.progressButtons button {
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #111;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 15px 32px;
+    border: solid 0px #555;
+    /*box-shadow: 5px -5px 2.5px  rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px -5px 2.5px  rgba(0,0,0,0.2);
+    -webkit-box-shadow: 5px -5px 2.5px  rgba(0,0,0,0.2);
+    -o-box-shadow: 5px -5px 2.5px  rgba(0,0,0,0.2);*/
+    border-radius:15px;
+
+}
+
+.progressButtons button:hover {
+    background-color: #222;
+    color: #eee;
+}
+
+.progressButtons button:active {
+    background-color: #111;
+    color: #aaa;
+}
+
+.builderHeader {
+    display: flex;
+    align-items: center;
+    padding:0;
+    margin:0;
+    background-color: black;
+    border-bottom: solid 2px #555;
+}
+
+.switchLeft {
+    background-color: #222;
+    border: none;
+    color: white;
+    padding: 22px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5%;
+    border-radius: 50%;
+    font-family:'Courier New', monospace;
+}
+
+.switchRight {
+    background-color: #222;
+    border: none;
+    color: white;
+    padding: 22px 22px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 5%;
+    font-family:'Courier New', monospace;
+}
+
+.switchRight:hover, .switchLeft:hover{
+    background-color: #333;
+    color: #eee;
+}
+
+.switchRight:active , .switchLeft:active {
+    background-color: #111;
+    color: #aaa;
+}
+
+.rocketSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.rocketPart {
+    background-color: black;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paddedDiv {
+    height:100%;
+    width:20%;
+}
+
+.statBox {
+    margin-right: 5%;
+    justify-content: center;
+    padding:5% 10%;
+    background-color: black;
+    color: white;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+}
+
+.rocketPartImage {
+    width:100px;
+}
+
+.backgroundCircle {
+    height: 100%;
+    background-color: #222;
+    border-radius: 50%;
+    border: solid 0.2em #555;
+    padding: 15%;
+}
+
+.infoBox {
+    margin-left: 5%;
+    padding:5% 10%;
+    background-color: black;
+    color: white;
+    border: solid 0.2em #555;
+    border-radius: 20px;
+}
+
+.footerOptions {
+    background-color: black;
+    border: solid 0.2em #555;
+    border-radius: 25px;
+    color: white;
+    margin: 0;
+    padding-bottom:5%;
+    margin: 1%;
+}
+
+#simulationVideo {
+    margin: auto;
+    visibility: hidden;
+    display: none;
+    height:60vh;
+}
+
+#simulationMessage {
+    visibility: hidden;
+    display: none;
+    text-align: center;
+    color: white;
+}
+
+#simulationMessage button {
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #111;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 15px 32px;
+    border: solid 0px #555;
+    border-radius:15px;
+}
+
+#simulationMessage button:hover {
+    background-color: #222;
+    color: #eee;
+}
+
+#simulationMessage button:active {
+    background-color: #111;
+    color: #aaa;
+}
+
+#simulationTitle {
+    visibility: hidden;
+    display:none;
+    color: white;
+    text-align:center;
+}
+
+#simulationText {
+    color: red;
+}
+
+.protectionChoice {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    width: 33%
+}
+.protectionChoice img {
+    width:50%;
+    margin:auto;
+}
+
+.protectionOptions {
+    display: flex;
+    flex-direction: row;
+}

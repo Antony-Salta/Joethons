@@ -1,0 +1,30 @@
+html : 
+- 4 sections : sim + run buttons, rocket selector, protection selector, fuel slider
+Sim button: opens new animation page
+RUn button: moves to game
+budget : displays current budget
+
+Rocket selector:
+- list of each part options : each have stats, image, name, cost
+- index of current selected, buttons to swithc, display stats
+
+protection selector : 
+- checklist buttons for each type
+- select to add
+
+fuel slider:
+adjust slider, displays fuel and displays weight equivalent
+
+
+step by step:
+- create layout, all buttons, text, etc in correct place
+- create images for each part of the rocket
+- create javascript to get image switching working for each rocket part
+- javascript to display correct stats
+- fuel slider display working
+- work on making it all work with the correct budget
+- store the final information of the ships stats eg weight, speed etc
+- simulation button working (create 4 animations for each scenario)
+- display what went wrong with the rocket if explodes
+- unlock run button if worked correctly
+- run button moves to next page
