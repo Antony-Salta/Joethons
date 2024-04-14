@@ -6,7 +6,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="start_page.css">
+    <link rel="stylesheet" href="../styles/start_page.css">
   </head>
   <body>
     <div class="main-content">
@@ -21,8 +21,13 @@
         </ul>
       </div>
       <div class="button-box">
-        <button id="start-button">Get Started!</button>
+        <button id="start-button" onclick="nextPage()">Get Started!</button>
       </div>
     </div>
+    <script>
+      function nextPage() {
+        window.location.href = "earth_info.html";
+      }
+    </script>
   </body>
 </html>

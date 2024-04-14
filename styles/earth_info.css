@@ -5,7 +5,7 @@ body, html {
 }
 body {
   margin: 0;
-  background-image: url(acrossSpaceAnimation.gif);
+  background-image: url(../images/acrossSpaceAnimation.gif);
   background-size: cover;
   font-family: 'Courier New', monospace;
 }
@@ -48,12 +48,13 @@ body {
 
 .button-box {
   margin: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 0%;
   justify-content: center;
   text-align: center;
 }
 
 #start-button {
+  text-align: center;
   margin-bottom: 5%;
   background-color: #222;
   font-family: 'Courier New', monospace;

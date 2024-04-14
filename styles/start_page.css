@@ -5,7 +5,7 @@ body, html {
 }
 body {
   margin: 0;
-  background-image: url(acrossSpaceAnimation.gif);
+  background-image: url(../images/acrossSpaceAnimation.gif);
   background-size: cover;
   font-family: 'Courier New', monospace;
 }
