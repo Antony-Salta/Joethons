@@ -12,17 +12,16 @@ body {
 }
 
 .left-side {
-  background-color: darkgray;
+  background-color: #333;
   width: 20%;
-  height: 100%;
 }
 
 #planet-div {
 
-  background-color: grey;
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
   margin: 10%;
   padding: 10%;
-
+  border-radius: 30px;
   text-align: center;
   padding: 10px, 0, 0, 0;
   font-size: 20px;
@@ -36,19 +35,41 @@ body {
 
 #budget-div {
 
-  background-color: grey;
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
   margin: 10%;
   padding: 10%;
-
+  border-radius: 30px;
   text-align: center;
   padding: 10px, 0, 0, 0;
   font-size: 20px;
   
 }
 
-#current-budget {
-  margin-top: 0;
+#streak-div {
+
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
+  margin: 5% 10%;
+  padding: 5px 0 5px 0;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 20px;
+  
+}
+
+#gif-div {
+
+  background-image: url(../images/earthSpin.gif);
+  background-size: cover;
+  width: 60%;
+  height:18%;
+  margin: 10%;
+  padding: 10%;
+  border-radius: 30px;
+}
+
+#current-budget, #current-streak {
   font-size: 40px;
+  margin: 0;
 }
 
 #planet-image {
@@ -59,13 +80,14 @@ body {
 
 .main-content {
   width: 100%;
+  background-image: url(../images/acrossSpaceAnimation.gif);
 }
 
 #question-app {
   margin: 5%;
   padding: 0% 5% 5% 5%;
   padding-top: 1%;
-  background-color: #fff;
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -90,7 +112,7 @@ body {
 }
 
 button {
-  background-color: #007BFF;
+  background-color: #960d83;
   color: white;
   border: none;
   border-radius: 5px;
@@ -115,7 +137,7 @@ button:hover {
 #start, #next {
   justify-content: center;
   text-align: center;
-  background-color: #28A745;
+  background-color: #222;
   color: white;
   border: none;
   border-radius: 5px;
@@ -126,7 +148,7 @@ button:hover {
 }
 
 #start:hover, #next:hover {
-  background-color: #218838;
+  background-color: #444;
 }
 
 .hide {

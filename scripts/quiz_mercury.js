@@ -112,7 +112,7 @@ function concludeQuiz() {
   resultsElement.innerHTML = `
       <h2>Quiz Completed!</h2>
       <p>Your final budget: ${budget} out of ${shuffledQuestions.length}</p>
-      <button onclick="restartQuiz()">Restart Quiz</button>
+      <button onclick="restartQuiz()">Build your Ship</button>
   `;
   quizAppElement.appendChild(resultsElement);
 }
@@ -131,15 +131,6 @@ const questions = [{
     { "text": "Second Biggest", "correct": false},
     { "text": "Smallest", "correct": true},
     { "text": "Second Smallest", "correct": false}
-  ]
-},
-{
-  "question": "What is Mercury Made out of?",
-  "answers": [
-    { "text": "Cheese", "correct": false},
-    { "text": "Gas", "correct": false},
-    { "text": "Air", "correct": false},
-    { "text": "Rock", "correct": true}
   ]
 },
 {

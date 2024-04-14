@@ -10,6 +10,7 @@ const answerButtonsElement = document.getElementById('question-button-div');
 const quizAppElement = document.getElementById('question-app');
 const resultsElement = document.createElement('div');
 const budgetElement = document.getElementById('current-budget');
+const streakElement = document.getElementById('current-streak');
 const questionNumberElement = document.getElementById('question-number');
 resultsElement.setAttribute('id', 'results');
 resultsElement.classList.add('results', 'hide');
@@ -18,6 +19,7 @@ quizAppElement.appendChild(resultsElement);
 let shuffledQuestions, currentQuestionIndex;
 let budget = 0;
 let budgetAdd = 100;
+let streak = 0;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -72,10 +74,14 @@ function selectAnswer(selectedButton) {
       budget += budgetAdd;
       budgetElement.innerHTML = `£${budget}`;
       budgetAdd += 100;
+      streak += 1;
+      streakElement.innerHTML = `${streak}`;
+
 
   }
   else {
     budgetAdd = 100;
+    streakElement.innerHTML = `0`;
   }
 
   setStatusClass(selectedButton, correct);
@@ -111,17 +117,19 @@ function concludeQuiz() {
   resultsElement.classList.remove('hide');
   resultsElement.innerHTML = `
       <h2>Quiz Completed!</h2>
-      <p>Your final budget: ${budget} out of ${shuffledQuestions.length}</p>
-      <button onclick="restartQuiz()">Restart Quiz</button>
+      <p>Your final budget: ${budget}</p>
+      <button onclick="nextPage()">Build your Ship</button>
   `;
   quizAppElement.appendChild(resultsElement);
 }
 
-function restartQuiz() {
-  resultsElement.classList.add('hide');
-  budget = 0;
-  currentQuestionIndex = 0;
-  startGame();
+function nextPage() {
+  fetch("../main/current_info.json")
+  .then(data => {
+    console.log(data);
+    data.budget = budget;
+  })
+  window.location.href = 'builder.html';
 }
 
 const questions = [{
