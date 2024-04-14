@@ -1,0 +1,73 @@
+{
+    "heads" :[
+        {
+            "speed":72,
+            "weight":200,
+            "cost":400,
+            "image":"./Images/RocketTop1.png"
+        },
+        {
+            "speed":91,
+            "weight":300,
+            "cost":750,
+            "image":"./Images/RocketTop2.png"
+        },
+        {
+            "speed":45,
+            "weight":100,
+            "cost":150,
+            "image":"./Images/RocketTop3.png"
+        }
+    ],
+    "bodies" :[
+        {
+            "strength":120,
+            "weight":1250,
+            "cost":900,
+            "image":"./Images/RocketBody1.png"
+        },
+        {
+            "strength":55,
+            "weight":1000,
+            "cost":600,
+            "image":"./Images/RocketBody2.png"
+        },
+        {
+            "strength":110,
+            "weight":1500,
+            "cost":1200,
+            "image":"./Images/RocketBody3.png"
+        }
+    ],
+    "thrusts": [
+        {
+            "thrust":64,
+            "weight":400,
+            "cost":250,
+            "image":"./Images/RocketThruster1.png"
+        },
+        {
+            "thrust":82,
+            "weight":700,
+            "cost":400,
+            "image":"./Images/RocketThruster2.png"
+        },
+        {
+            "thrust":98,
+            "weight":600,
+            "cost":400,
+            "image":"./Images/RocketThruster3.png"
+        }
+    ],
+    "protection" : {
+        "acid": {
+            "cost":500
+        },
+        "heat": {
+            "cost":500
+        },
+        "pressure": {
+            "cost":500
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "earth":{
+        "enter":{
+            "atmosphere":45,
+            "acid":false,
+            "heat":false,
+            "pressure":false
+        },
+        "exit":35,
+        "distanceFromSun":1000
+    },
+    "mercury":{
+        "enter": {
+            "atmosphere":50,
+            "acid": false,
+            "heat": true,
+            "pressure":false
+        },
+        "exit":20,
+        "distanceFromSun":100
+    }
+}

@@ -1,114 +1,16 @@
-jsonData = `{
-    "heads" :[
-        {
-            "speed":72,
-            "weight":200,
-            "cost":400,
-            "image":"./Images/RocketTop1.png"
-        },
-        {
-            "speed":91,
-            "weight":300,
-            "cost":750,
-            "image":"./Images/RocketTop2.png"
-        },
-        {
-            "speed":45,
-            "weight":100,
-            "cost":150,
-            "image":"./Images/RocketTop3.png"
-        }
-    ],
-    "bodies" :[
-        {
-            "strength":120,
-            "weight":1250,
-            "cost":900,
-            "image":"./Images/RocketBody1.png"
-        },
-        {
-            "strength":55,
-            "weight":1000,
-            "cost":600,
-            "image":"./Images/RocketBody2.png"
-        },
-        {
-            "strength":110,
-            "weight":1500,
-            "cost":1200,
-            "image":"./Images/RocketBody3.png"
-        }
-    ],
-    "thrusts": [
-        {
-            "thrust":64,
-            "weight":400,
-            "cost":250,
-            "image":"./Images/RocketThruster1.png"
-        },
-        {
-            "thrust":82,
-            "weight":700,
-            "cost":400,
-            "image":"./Images/RocketThruster2.png"
-        },
-        {
-            "thrust":98,
-            "weight":600,
-            "cost":400,
-            "image":"./Images/RocketThruster3.png"
-        }
-    ],
-    "protection" : {
-        "acid": {
-            "cost":500
-        },
-        "heat": {
-            "cost":500
-        },
-        "pressure": {
-            "cost":500
-        }
-    }
-}`
+var totalBudget;
+var currentPlanet;
+var targetPlanet;
 
-planetData = `{
-    "earth":{
-        "enter":{
-            "atmosphere":45,
-            "acid":false,
-            "heat":false,
-            "pressure":false
-        },
-        "exit":35,
-        "distanceFromSun":1000
-    },
-    "mercury":{
-        "enter": {
-            "atmosphere":50,
-            "acid": false,
-            "heat": true,
-            "pressure":false
-        },
-        "exit":20,
-        "distanceFromSun":100
-    }
-}`
+var planets;
 
-const totalBudget = 10000;
+var rocketHeads;
+var rocketBodies;
+var rocketThrusts;
+var rocketProtection;
+
 const maxFuel = 1000;
 const fuelCostPerLitre = 3;
-
-const planets = JSON.parse(planetData);
-
-var currentPlanet = "earth";
-var targetPlanet = "mercury";
-
-var json = JSON.parse(jsonData);
-var rocketHeads = json.heads;
-var rocketBodies = json.bodies;
-var rocketThrusts = json.thrusts;
-var rocketProtection = json.protection;
 
 var headPtr = 0;
 var bodyPtr = 0;
@@ -119,11 +21,61 @@ var heatProtection = false;
 var pressureProtection = false;
 
 function builderLoaded() {
-    updateRocketBody();
-    updateRocketHead();
-    updateRocketThrust();
-    fuelChanged(50);
-    adjustBudget();
+    fetch('http://localhost:3000/getStatus/')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            totalBudget = data.budget;
+            currentPlanet = data.currentPlanet;
+            targetPlanet = data.targetPlanet;
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error);
+        }); 
+
+
+    fetch('http://localhost:3000/getRocketParts/')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        rocketHeads = data.heads;
+        rocketBodies = data.bodies;
+        rocketThrusts = data.thrusts;
+        rocketProtection = data.protection;
+        updateRocketBody();
+        updateRocketHead();
+        updateRocketThrust();
+        fuelChanged(50);
+        adjustBudget();
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+    fetch('http://localhost:3000/getPlanets/')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        planets = data;
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });    
 }
 
 function rotateRight(rocketPart) {
