@@ -1,4 +1,5 @@
 import pygame
+import asyncio
 
 screen_size = (1280,720)
 
@@ -70,7 +71,7 @@ class Interactable (pygame.sprite.Sprite):
             pygame.draw.polygon(self.screen, (150,0,240), (((self.rect.x +self.width/2) -20, self.rect.y -30), ((self.rect.x +self.width/2), self.rect.y - 30), ((self.rect.x + self.width/2) - 10, self.rect.y)))
             
     ### This returns true if an interactable is now being interacted with, for the first/only really any time
-    def interact(self):
+    async def interact(self):
         if self.interacted:
             return False
         self.interacted = True              
@@ -81,7 +82,7 @@ class Telescope (Interactable):
         super().__init__(height, width, image, x, y, screen, planet)
         
     
-    def interact(self):
+    async def interact(self):
         self.interacted = True  
         
 
@@ -92,20 +93,20 @@ class Telescope (Interactable):
         
         
 
-        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/sky.png").convert_alpha()
+        background = pygame.image.load("assets/"+self.planet["Name"]+"/sky.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
         
         if self.planet["Name"] == "Earth":
-            newMoon = pygame.image.load("explore/assets/Earth/newMoon.png").convert_alpha()
+            newMoon = pygame.image.load("assets/Earth/newMoon.png").convert_alpha()
             newMoon = pygame.transform.scale(newMoon, screen_size)
             
-            crescentMoon = pygame.image.load("explore/assets/Earth/crescentMoon.png").convert_alpha()
+            crescentMoon = pygame.image.load("assets/Earth/crescentMoon.png").convert_alpha()
             crescentMoon = pygame.transform.scale(crescentMoon, screen_size)
             
-            halfMoon = pygame.image.load("explore/assets/Earth/halfMoon.png").convert_alpha()
+            halfMoon = pygame.image.load("assets/Earth/halfMoon.png").convert_alpha()
             halfMoon = pygame.transform.scale(halfMoon, screen_size)
             
-            fullMoon = pygame.image.load("explore/assets/Earth/fullMoon.png").convert_alpha()
+            fullMoon = pygame.image.load("assets/Earth/fullMoon.png").convert_alpha()
             fullMoon = pygame.transform.scale(fullMoon, screen_size)
         
         exitFont = pygame.font.SysFont("Verdana", 60)
@@ -159,6 +160,7 @@ class Telescope (Interactable):
             # independent physics.
             dt = clock.tick(60) / 1000
             timePassed += dt   
+            await asyncio.sleep(0)
 
             
 class Hammer (Interactable):
@@ -166,7 +168,9 @@ class Hammer (Interactable):
         super().__init__(height, width, image, x, y, screen, planet)
     
 
-    def interact(self ):
+    async def interact(self ):
+        
+        print("Made it here")
         
         self.interacted = True  
         
@@ -176,7 +180,7 @@ class Hammer (Interactable):
         timePassed = 0
         dt = 0
 
-        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/horizon.png").convert_alpha()
+        background = pygame.image.load("assets/"+self.planet["Name"]+"/horizon.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
         
         
@@ -191,13 +195,13 @@ class Hammer (Interactable):
         
         lineRenders, lineRects = makeMultilineText(text, font)
         
-        hammerImage = pygame.image.load("explore/assets/hammer.png").convert_alpha()
+        hammerImage = pygame.image.load("assets/hammer.png").convert_alpha()
         hammerImage = pygame.transform.scale(hammerImage, (80,80))
         hammerRect = hammerImage.get_rect()
         hammerRect.x = screen_size[0] * 9/16
         hammerRect.y = screen_size[1] * 1/4
         
-        featherImage = pygame.image.load("explore/assets/feather.png").convert_alpha()
+        featherImage = pygame.image.load("assets/feather.png").convert_alpha()
         featherImage = pygame.transform.scale(featherImage, (60,60))
         featherRect = featherImage.get_rect()
         featherRect.x = screen_size[0] * 7/16
@@ -286,7 +290,9 @@ class Hammer (Interactable):
             # dt is delta time in seconds since last frame, used for framerate-
             # independent physics.
             dt = clock.tick(60) / 1000
-            timePassed += dt   
+            timePassed += dt 
+            await asyncio.sleep(0)
+              
                     
             
             
@@ -295,7 +301,7 @@ class Thermometer(Interactable):
         super().__init__(height, width, image, x, y, screen, planet)
     
 
-    def interact(self ):
+    async def interact(self ):
         self.interacted = True  
         
         screen_size = (1280,720)
@@ -304,7 +310,7 @@ class Thermometer(Interactable):
         timePassed = 0
         dt = 0
 
-        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/thermometerPlanet.png").convert_alpha()
+        background = pygame.image.load("assets/"+self.planet["Name"]+"/thermometerPlanet.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
         
         
@@ -380,7 +386,8 @@ class Thermometer(Interactable):
             # dt is delta time in seconds since last frame, used for framerate-
             # independent physics.
             dt = clock.tick(60) / 1000
-            timePassed += dt   
+            timePassed += dt  
+            await asyncio.sleep(0) 
 
     
     
@@ -389,7 +396,7 @@ class Clock(Interactable):
         super().__init__(height, width, image, x, y, screen, planet)
     
 
-    def interact(self ):
+    async def interact(self ):
         self.interacted = True  
         
         screen_size = (1280,720)
@@ -398,14 +405,14 @@ class Clock(Interactable):
         timePassed = 0
         dt = 0
 
-        dawn = pygame.image.load("explore/assets/"+self.planet["Name"]+"/dawn.png").convert_alpha()
+        dawn = pygame.image.load("assets/"+self.planet["Name"]+"/dawn.png").convert_alpha()
         dawn = pygame.transform.scale(dawn, screen_size)
         
-        noon = pygame.image.load("explore/assets/"+self.planet["Name"]+"/noon.png").convert_alpha()
+        noon = pygame.image.load("assets/"+self.planet["Name"]+"/noon.png").convert_alpha()
         noon = pygame.transform.scale(noon, screen_size)
-        dusk = pygame.image.load("explore/assets/"+self.planet["Name"]+"/dusk.png").convert_alpha()
+        dusk = pygame.image.load("assets/"+self.planet["Name"]+"/dusk.png").convert_alpha()
         dusk = pygame.transform.scale(dusk, screen_size)
-        midnight = pygame.image.load("explore/assets/"+self.planet["Name"]+"/midnight.png").convert_alpha()
+        midnight = pygame.image.load("assets/"+self.planet["Name"]+"/midnight.png").convert_alpha()
         midnight = pygame.transform.scale(midnight, screen_size)
         
         
@@ -497,3 +504,4 @@ class Clock(Interactable):
             # independent physics.
             dt = clock.tick(60) / 1000
             timePassed += dt   
+            await asyncio.sleep(0)
