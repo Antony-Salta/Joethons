@@ -72,9 +72,37 @@ jsonData = `{
     }
 }`
 
+planetData = `{
+    "earth":{
+        "enter":{
+            "atmosphere":10,
+            "acid":false,
+            "heat":false,
+            "pressure":false
+        },
+        "exit":10,
+        "distanceFromSun":1000
+    },
+    "mercury":{
+        "enter": {
+            "atmosphere":20,
+            "acid": false,
+            "heat": true,
+            "pressure":false
+        },
+        "exit":20,
+        "distanceFromSun":100
+    }
+}`
+
 const totalBudget = 10000;
 const maxFuel = 1000;
 const fuelCostPerLitre = 3;
+
+const planets = JSON.parse(planetData);
+
+var currentPlanet = "earth";
+var targetPlanet = "mercury";
 
 var json = JSON.parse(jsonData);
 var rocketHeads = json.heads;
@@ -214,7 +242,73 @@ function adjustBudget() {
 }
 
 function runSimulation() {
+    const fuelWeight = parseInt(document.getElementById("fuelCost").innerHTML.toString().replace("Weight: ", "").replace("kg",""));
+    const mass = rocketHeads[headPtr].weight + rocketBodies[bodyPtr].weight + rocketThrusts[thrustPtr].weight + fuelWeight;
+    const fuel = parseInt(document.getElementById("fuelCost").innerHTML.toString().replace("Fuel: ", "").replace("litres",""));
+    const speed = rocketHeads[headPtr].speed;
+    const thrust = rocketThrusts[thrustPtr].thrust;
+    const strength = rocketBodies[bodyPtr].strength;
 
+    const resistance = (100 - speed)/100;
+    const weight = mass * 9.8;
+    const acceleration = thrust - (weight * 0.005);
+    const exit = acceleration * resistance;
+
+    document.getElementById("simulationVideo").src = "";
+    document.getElementById("rocketBuilder").style.visibility = "hidden";
+    document.getElementById("rocketBuilder").style.display = "none";
+    document.getElementById("simulationVideo").style.visibility = "visible";
+    document.getElementById("simulationVideo").style.display = "block";
+    document.getElementById("simulationTitle").style.visibility = "visible";
+    document.getElementById("simulationTitle").style.display = "block";
+    document.body.style.background = "black";
+
+    if (exit < planets[currentPlanet].exit) {
+        // run simulation where explosion occurs on exit
+        document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
+        loadSimulationEnd("You weren't able to escape the atmosphere, seems you don't have the power or speed to lift the weight!", 3000);
+    } else {
+        const distanceCanTravel = (fuel * 1000)/weight
+        const distanceToTravel = Math.abs(planets[currentPlanet].distanceToSun - planets[targetPlanet].distanceToSun);
+        if (distanceCanTravel < distanceToTravel) {
+            // run simulation where explosion occurs in space
+            document.getElementById("simulationVideo").src = "./Animations/FuelConsumptionExplosionAnimation.gif";
+            loadSimulationEnd("Seem you ran out of fuel!", 5000);
+        } else {
+            if (planets[targetPlanet].enter.atmosphere > strength ||
+            planets[targetPlanet].enter.acid && !acidProtection ||
+            planets[targetPlanet].enter.heat && !heatProtection ||
+            planets[targetPlanet].enter.pressure && !pressureProtection) {
+                // run simulation where explosion occurs on enter
+                document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
+                loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 3000);
+            } else {
+                // run successful simulation    
+                document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
+                loadSimulationEnd("Congrats! Your ship successfully passed the simulation!", 3000);
+            }
+        }
+    }
+}
+
+function loadSimulationEnd(message, time) {
+    window.setTimeout(function() {
+        document.getElementById("simulationMessage").style.visibility = "visible";
+        document.getElementById("simulationMessage").style.display = "block";
+        document.getElementById("simulationText").innerHTML = message;
+    }, time); 
+}
+
+function endSimulation() {
+    document.body.style.background = "linear-gradient(to bottom right, purple, violet, dodgerblue, blue)";
+    document.getElementById("rocketBuilder").style.visibility = "visible";
+    document.getElementById("rocketBuilder").style.display = "block";
+    document.getElementById("simulationVideo").style.visibility = "hidden";
+    document.getElementById("simulationVideo").style.display = "none";
+    document.getElementById("simulationMessage").style.visibility = "hidden";
+    document.getElementById("simulationMessage").style.display = "none";
+    document.getElementById("simulationTitle").style.visibility = "hidden";
+    document.getElementById("simulationTitle").style.display = "none";
 }
 
 function runGame() {
