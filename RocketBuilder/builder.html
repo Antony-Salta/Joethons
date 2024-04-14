@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Solar System Explorer</title>
+        <link rel="stylesheet" href="./builderStyles.css" />
+    </head>
+    <body onload="builderLoaded()">
+        <div id="rocketBuilder">
+            <!-- section for budget, run and sim buttons -->
+            <section>
+                <div class="builderHeader">
+                    <div class="budgetBox">
+                        <p id="budget">$1000000</p>
+                    </div>
+                    <div class="progressButtons">
+                        <button onclick="runSimulation()">Simulate</button>
+                        <button id="runButton">Run</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- section for rocket selector -->
+            <section>
+                <!-- rocket head switcher -->
+                <div>
+                    <div class="rocketSection">
+                        <div class="paddedDiv">
+                            <div class="infoBox">
+                                <h2 class="categoryTitle">Rocket Top</h2>
+                                <p>This is like a super strong helmet for the rocket. It covers and protects whatever important stuff we're sending into space, making sure it stays safe and sound during the bumpy ride up.</p>
+                            </div>
+                        </div>
+                        <div class="rocketPart">
+                            <button class="switchLeft" onclick="rotateLeft('head')">Left</button>
+                            <div class="backgroundCircle">
+                                <img id="headImage" class="rocketPartImage" src="./Images/temp_rocket_head.png"/>
+                            </div>
+                            <button class="switchRight" onclick="rotateRight('head')">Right</button>
+                        </div>
+                        <div class="paddedDiv">
+                            <div class="statBox">
+                                <h2>Stats</h2>
+                                <p id="headSpeed">Speed : 100</p>
+                                <p id="headWeight">Weight : 1000kg</p>
+                                <p id="headCost">Cost : £25</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- rocket body switcher -->
+                <div>
+                    <div class="rocketSection">
+                        <div class="paddedDiv">
+                            <div class="infoBox">
+                                <h2 class="categoryTitle">Rocket Body</h2>
+                                <p>Think of this as the rocket's body or skeleton. It's the main part of the rocket, like the frame of a car. Inside, it holds all the fuel, engines, and brains (like a computer) needed for the rocket to work.</p>    
+                            </div>
+                        </div>
+                        <div class="rocketPart">
+                            <button class="switchLeft" onclick="rotateLeft('body')">Left</button>
+                            <div class="backgroundCircle">
+                                <img id="bodyImage" class="rocketPartImage" src="./Images/temp_rocket_body.png"/>
+                            </div>
+                            <button class="switchRight" onclick="rotateRight('body')">Right</button>
+                        </div>
+                        <div class="paddedDiv">
+                            <div class="statBox">
+                                <h2>Stats</h2>
+                                <p id="bodyStrength">Strength: 100</p>
+                                <p id="bodyWeight">Weight: 5600kg</p>
+                                <p id="bodyCost">Cost : £30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- rocket thrust switcher -->
+                <div>
+                    <div class="rocketSection">
+                        <div class="paddedDiv">
+                            <div class="infoBox">
+                                <h2 class="categoryTitle">Rocket Thruster</h2>
+                                <p>This is the powerhouse of the rocket! It's like the rocket's super-strong legs that push it up into space. These thrusters shoot out fiery gas to make the rocket go up, up, and away!</p>
+                            </div>
+                        </div>
+                        <div class="rocketPart">
+                            <button class="switchLeft" onclick="rotateLeft('thrust')">Left</button>
+                            <div class="backgroundCircle">
+                                <img id="thrustImage" class="rocketPartImage" src="./Images/temp_rocket_thrust.png"/>
+                            </div>
+                            <button class="switchRight" onclick="rotateRight('thrust')">Right</button>
+                        </div>
+                        <div class="paddedDiv">
+                            <div class="statBox">
+                                <h2>Stats</h2>
+                                <p id="thrustThrust">Thrust: 100</p>
+                                <p id="thrustWeight">Weight: 300kg</p>
+                                <p id="thrustCost">Cost : £10</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- section for protection choice -->
+            <section class="footerOptions">
+                <h2 class="categoryTitle">Protection</h2>
+                <div class="protectionOptions">
+                    <div class="protectionChoice">
+                        <img src="./Images/acid-icon.png" />
+                        <input id="acidCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Acid Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
+                    <div class="protectionChoice">
+                        <img src="./Images/heat-icon.png" />
+                        <input id="heatCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Heat Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
+                    <div class="protectionChoice">
+                        <img src="./Images/pressure-icon.png" />
+                        <input id="pressureCheckbox" type="checkbox" onclick="protectionClicked('acid')">
+                        <label>Pressure Protection</label>
+                        <p>Cost: £400</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- section for fuel -->
+            <section class="footerOptions">
+                <h2 class="categoryTitle">Fuel</h2>
+                <div class="centeredOptions">
+                    <p id="fuelCost">Fuel cost: £1000</p>
+                </div>
+                <div class="centeredOptions">
+                    <p id="fuelCounter">Fuel: 1000litres</p>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="100" value="50" class="slider" id="fuelSlider" oninput="fuelChanged(this.value)" onchange="fuelChanged(this.value)" >
+                    </div>
+                    <p id="fuelWeight">Weight: 500kg</p>
+                </div>
+            </section>
+        </div>
+        <h1 id="simulationTitle">Rocket Simulation</h1>
+        <img id="simulationVideo" src=""/>
+        <div id="simulationMessage">
+            <h3 id="simulationText">Simulation Message</h3>
+            <button class="" onclick="endSimulation()">Return</button>
+        </div>
+        <script src="./builder.js"></script>
+    </body>
+</html>
