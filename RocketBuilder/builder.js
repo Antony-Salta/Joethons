@@ -20,6 +20,8 @@ var acidProtection = false;
 var heatProtection = false;
 var pressureProtection = false;
 
+var canSimulate = true;
+
 function builderLoaded() {
     fetch('http://localhost:3000/getStatus/')
         .then((response) => {
@@ -191,6 +193,11 @@ function adjustBudget() {
         budget -= 1000;
     }
     document.getElementById("budget").innerHTML = "Budget : £" + budget;
+    if (budget < 0) {
+        canSimulate = false;
+    } else {
+        canSimulate = true;
+    }
 }
 
 function runSimulation() {
@@ -217,30 +224,34 @@ function runSimulation() {
     document.getElementById("simulationTitle").style.display = "block";
     document.body.style.background = "black";
 
-    if (exit < planets[currentPlanet].exit) {
-        // run simulation where explosion occurs on exit
-        document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
-        loadSimulationEnd("You weren't able to escape the atmosphere, seems you don't have the power or speed to lift the weight!", 3000);
+    if (!canSimulate) {
+        loadSimulationEnd("You have spent too much money! Make sure you don't go over budget.", 10);
     } else {
-        const distanceCanTravel = (fuel * 1000)/weight
-        const distanceToTravel = Math.abs(planets[currentPlanet].distanceToSun - planets[targetPlanet].distanceToSun);
-        if (distanceCanTravel < distanceToTravel) {
-            // run simulation where explosion occurs in space
-            document.getElementById("simulationVideo").src = "./Animations/FuelConsumptionExplosionAnimation.gif";
-            loadSimulationEnd("Seem you ran out of fuel!", 5000);
+        if (exit < planets[currentPlanet].exit) {
+            // run simulation where explosion occurs on exit
+            document.getElementById("simulationVideo").src = "./Animations/CantExitExplosionAnimation.gif";
+            loadSimulationEnd("You weren't able to escape the atmosphere, seems you don't have the power or speed to lift the weight!", 3000);
         } else {
-            if (planets[targetPlanet].enter.atmosphere > strength ||
-            planets[targetPlanet].enter.acid && !acidProtection ||
-            planets[targetPlanet].enter.heat && !heatProtection ||
-            planets[targetPlanet].enter.pressure && !pressureProtection) {
-                // run simulation where explosion occurs on enter
-                document.getElementById("simulationVideo").src = "./Animations/enterExplosionAnimation.gif";
-                loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 7000);
+            const distanceCanTravel = (fuel * 1000)/weight
+            const distanceToTravel = Math.abs(planets[currentPlanet].distanceToSun - planets[targetPlanet].distanceToSun);
+            if (distanceCanTravel < distanceToTravel) {
+                // run simulation where explosion occurs in space
+                document.getElementById("simulationVideo").src = "./Animations/FuelConsumptionExplosionAnimation.gif";
+                loadSimulationEnd("Seem you ran out of fuel!", 5000);
             } else {
-                // run successful simulation    
-                document.getElementById("simulationVideo").src = "./Animations/successfulAnimation.gif";
-                document.getElementById("simulationText").style.color = "green";
-                loadSimulationEnd("Congrats! Your ship successfully passed the simulation!", 7000);
+                if (planets[targetPlanet].enter.atmosphere > strength ||
+                planets[targetPlanet].enter.acid && !acidProtection ||
+                planets[targetPlanet].enter.heat && !heatProtection ||
+                planets[targetPlanet].enter.pressure && !pressureProtection) {
+                    // run simulation where explosion occurs on enter
+                    document.getElementById("simulationVideo").src = "./Animations/enterExplosionAnimation.gif";
+                    loadSimulationEnd("Your rocket ship didn't have the protection required to land!", 7000);
+                } else {
+                    // run successful simulation    
+                    document.getElementById("simulationVideo").src = "./Animations/successfulAnimation.gif";
+                    document.getElementById("simulationText").style.color = "green";
+                    loadSimulationEnd("Congrats! Your ship successfully passed the simulation!", 7000);
+                }
             }
         }
     }
