@@ -267,5 +267,15 @@ function endSimulation() {
 }
 
 function runGame() {
+    document.getElementById("simulationVideo").src = "";
+    document.getElementById("rocketBuilder").style.visibility = "hidden";
+    document.getElementById("rocketBuilder").style.display = "none";
+    document.getElementById("simulationVideo").style.visibility = "visible";
+    document.getElementById("simulationVideo").style.display = "block";
 
+    document.getElementById("simulationVideo").src = "./Animations/leavePlanetAnimation.gif";
+    window.setTimeout(function() {
+        // move to Joe's game here
+        console.log("finished rocket builder stage");
+    }, 5000); 
 }
