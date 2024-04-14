@@ -82,8 +82,6 @@ class Telescope (Interactable):
         
     
     def interact(self):
-        if self.interacted:
-            return False
         self.interacted = True  
         
 
@@ -133,7 +131,7 @@ class Telescope (Interactable):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-                if event.type == pygame.MOUSEBUTTONDOWN: 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: 
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
                         running = False
             
@@ -161,8 +159,7 @@ class Telescope (Interactable):
             # independent physics.
             dt = clock.tick(60) / 1000
             timePassed += dt   
-                    
-        return True
+
             
 class Hammer (Interactable):
     def __init__(self, height, width, image, x, y, screen, planet):
@@ -170,8 +167,7 @@ class Hammer (Interactable):
     
 
     def interact(self ):
-        if self.interacted:
-            return False
+        
         self.interacted = True  
         
         screen_size = (1280,720)
@@ -228,6 +224,7 @@ class Hammer (Interactable):
 
         bothDown = False
         spacePressed = False
+        selectedRect = None
         
         prompt = font.render("Press space to drop the hammer and feather.", True, (255,255,255), (0,0,0,0)).convert_alpha()
         while running:
@@ -236,12 +233,20 @@ class Hammer (Interactable):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-                if event.type == pygame.MOUSEBUTTONDOWN: 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: 
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
                         running = False
+                    if hammerRect.collidepoint(pygame.mouse.get_pos()):
+                        selectedRect = hammerRect
+                    if featherRect.collidepoint(pygame.mouse.get_pos()):
+                        selectedRect = featherRect
+                if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    selectedRect = None
             
             self.screen.blit(background,(0,0))
-
+            #drag around selectedObject
+            if selectedRect != None and pygame.mouse.get_pos()[1] <= screen_size[1] * 3/4:
+                selectedRect.y = pygame.mouse.get_pos()[1]
             
             # flip() the display to put your work on screen
             
@@ -262,7 +267,7 @@ class Hammer (Interactable):
                     if featherRect.y <= screen_size[1] * 3/4:
                         featherRect.y += self.planet["featherSpeed"] * dt
                         featherTime += dt
-                    else:
+                    elif hammerRect.y >= screen_size[1] * 3/4 and featherRect.y >= screen_size[1] * 3/4:
                         bothDown = True
             else:
                 self.screen.blit(prompt, (screen_size[0] /2 - prompt.get_width()/2, 0))
@@ -283,7 +288,6 @@ class Hammer (Interactable):
             dt = clock.tick(60) / 1000
             timePassed += dt   
                     
-        return True
             
             
 class Thermometer(Interactable):
@@ -292,8 +296,6 @@ class Thermometer(Interactable):
     
 
     def interact(self ):
-        if self.interacted:
-            return False
         self.interacted = True  
         
         screen_size = (1280,720)
@@ -351,7 +353,7 @@ class Thermometer(Interactable):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-                if event.type == pygame.MOUSEBUTTONDOWN: 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: 
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
                         running = False
             
@@ -379,8 +381,7 @@ class Thermometer(Interactable):
             # independent physics.
             dt = clock.tick(60) / 1000
             timePassed += dt   
-                    
-        return True
+
     
     
 class Clock(Interactable):
@@ -389,8 +390,6 @@ class Clock(Interactable):
     
 
     def interact(self ):
-        if self.interacted:
-            return False
         self.interacted = True  
         
         screen_size = (1280,720)
@@ -447,7 +446,7 @@ class Clock(Interactable):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-                if event.type == pygame.MOUSEBUTTONDOWN: 
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: 
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
                         running = False
             
@@ -498,5 +497,3 @@ class Clock(Interactable):
             # independent physics.
             dt = clock.tick(60) / 1000
             timePassed += dt   
-                    
-        return True

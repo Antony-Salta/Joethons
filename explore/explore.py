@@ -72,10 +72,10 @@ planet = {
                  Also, Mercury has a very elliptical orbit, meaning it orbits in
                  an oval around the Sun.
                  This means that when Mercury is close to the Sun, 
-                 it can actually stop or move slighly backward across the sky ,like how 
-                 noon went on for extra long."""
+                 it can actually stop or move slighly backward across the sky ,like a less 
+                 extreme version of noon going on for double the time here."""
                  }
-}# this name thing is dumb, but i only pass the inner dictionary in and I need the name there
+}# this name thing is dumb, but i only pass the inner dictionary in to the interactables and I need the name there
 
 #TODO, change this to read from a file or something
 chosenPlanet = planet["Mercury"]
@@ -142,14 +142,11 @@ while running:
         player.rect.y = 0
     
     
-    # Explaining this: if you hit space, you can interact with an interactable thing, if you're touching one. 
-    # If you are, then it'll go through the list until it interacts with one of them, then it will stop
+    # make sure you are actually able to have a spot where you only interact with one interactable. I did have it exclusive before, but then there's the issue of not being able to redo experiments, even though you can close out of them whenever 
     if(keys[pygame.K_SPACE]): 
         collidingSprites = pygame.sprite.spritecollide(player, interactables, False)
         if collidingSprites != None and len(collidingSprites) > 0:
-            for i in range(len(collidingSprites)):
-                if collidingSprites[0].interact():
-                    break
+            collidingSprites[0].interact()
     
     # flip() the display to put your work on screen
     interactables.update()
