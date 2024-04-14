@@ -82,7 +82,6 @@ async def main():
     global SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED, PROJECTILE_COOLDOWN_TIME, FPS, COUNTDOWN, CLOCK, PROJECTILE_SIZE, PLAYER_HEIGHT, PLAYER_SPEED, ASTROID_SPAWN_TIME, ASTROID_SIZE, LIVES, window, player, font, projectileArray, projectileArraySize, projectileCurrCooldown, projectileCooldownBool, astroidArray, astroidDirectionArray, timeForAstroidSpawn, distance, distanceTotal, distancePerMS, countdownStart, alive, run, start, dt, retrySurface, retryRect
     while run:
         for event in pygame.event.get():
-            drawMainScreen()
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
