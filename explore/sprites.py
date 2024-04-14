@@ -15,7 +15,7 @@ def makeMultilineText(text, font):
         lineRender = font.render(line, True, (255,255,255), (0,0,0,0.3))
         lineRenders.append(lineRender)
         lineRect = lineRender.get_rect()
-        lineRect.y = y + i * (line_height + 5)
+        lineRect.y = y + i * line_height 
         lineRects.append(lineRect)
     return lineRenders, lineRects
     
@@ -79,7 +79,7 @@ class Telescope (Interactable):
         super().__init__(height, width, image, x, y, screen, planet)
         
     
-    def interact(self ):
+    def interact(self):
         if self.interacted:
             return False
         self.interacted = True  
@@ -89,20 +89,24 @@ class Telescope (Interactable):
         running = True
         timePassed = 0
         dt = 0
+        
+        
 
-        background = pygame.image.load("explore/assets/EarthNight.png").convert_alpha()
+        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/sky.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
-        newMoon = pygame.image.load("explore/assets/newMoon.png").convert_alpha()
-        newMoon = pygame.transform.scale(newMoon, screen_size)
         
-        crescentMoon = pygame.image.load("explore/assets/crescentMoon.png").convert_alpha()
-        crescentMoon = pygame.transform.scale(crescentMoon, screen_size)
-        
-        halfMoon = pygame.image.load("explore/assets/halfMoon.png").convert_alpha()
-        halfMoon = pygame.transform.scale(halfMoon, screen_size)
-        
-        fullMoon = pygame.image.load("explore/assets/fullMoon.png").convert_alpha()
-        fullMoon = pygame.transform.scale(fullMoon, screen_size)
+        if self.planet["Name"] == "Earth":
+            newMoon = pygame.image.load("explore/assets/Earth/newMoon.png").convert_alpha()
+            newMoon = pygame.transform.scale(newMoon, screen_size)
+            
+            crescentMoon = pygame.image.load("explore/assets/Earth/crescentMoon.png").convert_alpha()
+            crescentMoon = pygame.transform.scale(crescentMoon, screen_size)
+            
+            halfMoon = pygame.image.load("explore/assets/Earth/halfMoon.png").convert_alpha()
+            halfMoon = pygame.transform.scale(halfMoon, screen_size)
+            
+            fullMoon = pygame.image.load("explore/assets/Earth/fullMoon.png").convert_alpha()
+            fullMoon = pygame.transform.scale(fullMoon, screen_size)
         
         exitFont = pygame.font.SysFont("Verdana", 60)
         exitButton = exitFont.render(" X ", True, (255,0,0), (0,0,0))
@@ -111,16 +115,7 @@ class Telescope (Interactable):
         exitRect.y = 0
         
         font = pygame.font.SysFont("Verdana", 20)
-        moonText = """
-        The Earth has one moon, just called The Moon.
-        creative...
-        The moon can only be seen from light reflecting off the Sun at us.
-        As the Moon's position changes, the way it looks changes.
-        The main stages are the new moon, crescent moon,
-        half moon, gibbon moon and full moon, going from nearly invisible to fully visible
-         
-        There's also last of the sunrise at the bottom, making different 
-        colours because of how theEarth's atmosphere scatters the light."""
+        moonText = self.planet["skyText"]
         
         lineRenders, lineRects = makeMultilineText(moonText, font)
         
@@ -137,23 +132,21 @@ class Telescope (Interactable):
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN: 
-                    print(pygame.mouse.get_pos())
-                    print(exitRect)
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
-                        print("clicked the thing")
                         running = False
             
             self.screen.blit(background,(0,0))
 
             keys = pygame.key.get_pressed()
-            if timePassed % 20 < 5:
-                self.screen.blit(newMoon, (0,0))
-            elif timePassed % 20 < 10:
-                self.screen.blit(crescentMoon, (0,0))
-            elif timePassed % 20 < 15:
-                self.screen.blit(halfMoon, (0,0))
-            else:
-                self.screen.blit(fullMoon, (0,0))
+            if self.planet["Name"] == "Earth":
+                if timePassed % 20 < 5:
+                    self.screen.blit(newMoon, (0,0))
+                elif timePassed % 20 < 10:
+                    self.screen.blit(crescentMoon, (0,0))
+                elif timePassed % 20 < 15:
+                    self.screen.blit(halfMoon, (0,0))
+                else:
+                    self.screen.blit(fullMoon, (0,0))
 
             # flip() the display to put your work on screen
             for i, lineRender in enumerate(lineRenders):
@@ -185,7 +178,7 @@ class Hammer (Interactable):
         timePassed = 0
         dt = 0
 
-        background = pygame.image.load("explore/assets/horizon.png").convert_alpha()
+        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/horizon.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
         
         
@@ -196,12 +189,7 @@ class Hammer (Interactable):
         exitRect.y = 0
         
         font = pygame.font.SysFont("Verdana", 20)
-        text = """Hammer time!
-        Gravity accelerates everything at the same rate.
-        So with no atmosphere to slow things down, the hammer and feather
-        would fall at the same speed.
-        But because the hammer is denser than the feather, it's affected by 
-        air resistance less than the feather, so hits the ground earlier"""
+        text = self.planet["gravityText"]
         
         lineRenders, lineRects = makeMultilineText(text, font)
         
@@ -247,10 +235,7 @@ class Hammer (Interactable):
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN: 
-                    print(pygame.mouse.get_pos())
-                    print(exitRect)
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
-                        print("clicked the thing")
                         running = False
             
             self.screen.blit(background,(0,0))
@@ -315,7 +300,7 @@ class Thermometer(Interactable):
         timePassed = 0
         dt = 0
 
-        background = pygame.image.load("explore/assets/thermometerEarth.png").convert_alpha()
+        background = pygame.image.load("explore/assets/"+self.planet["Name"]+"/thermometerPlanet.png").convert_alpha()
         background = pygame.transform.scale(background, screen_size)
         
         
@@ -326,13 +311,7 @@ class Thermometer(Interactable):
         exitRect.y = 0
         
         font = pygame.font.SysFont("Verdana", 20)
-        text = """Nice and mild.
-        The highest temperature on Earth recordeed was 57.2C, 
-        and the lowest temperature recorder was -89.2C.
-        Compared to other planets, this is very mild, 
-        and part of why Earth is said to be in the 
-        "Goldilocks zone" of the solar system.
-        Not too hot, or too cold!"""
+        text = self.planet["temperatureText"]
         
         lineRenders, lineRects = makeMultilineText(text, font)
         
@@ -371,10 +350,7 @@ class Thermometer(Interactable):
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN: 
-                    print(pygame.mouse.get_pos())
-                    print(exitRect)
                     if exitRect.collidepoint(pygame.mouse.get_pos()):
-                        print("clicked the thing")
                         running = False
             
             self.screen.blit(background,(0,0))
@@ -395,6 +371,121 @@ class Thermometer(Interactable):
             self.screen.blit(exitButton, exitRect)
             self.screen.blit(hotThermometer, hotRect)
             self.screen.blit(coldThermometer, coldRect)
+            pygame.display.update()
+            # limits FPS to 60
+            # dt is delta time in seconds since last frame, used for framerate-
+            # independent physics.
+            dt = clock.tick(60) / 1000
+            timePassed += dt   
+                    
+        return True
+    
+    
+class Clock(Interactable):
+    def __init__(self, height, width, image, x, y, screen, planet):
+        super().__init__(height, width, image, x, y, screen, planet)
+    
+
+    def interact(self ):
+        if self.interacted:
+            return False
+        self.interacted = True  
+        
+        screen_size = (1280,720)
+        clock = pygame.time.Clock()
+        running = True
+        timePassed = 0
+        dt = 0
+
+        dawn = pygame.image.load("explore/assets/"+self.planet["Name"]+"/dawn.png").convert_alpha()
+        dawn = pygame.transform.scale(dawn, screen_size)
+        
+        noon = pygame.image.load("explore/assets/"+self.planet["Name"]+"/noon.png").convert_alpha()
+        noon = pygame.transform.scale(noon, screen_size)
+        dusk = pygame.image.load("explore/assets/"+self.planet["Name"]+"/dusk.png").convert_alpha()
+        dusk = pygame.transform.scale(dusk, screen_size)
+        midnight = pygame.image.load("explore/assets/"+self.planet["Name"]+"/midnight.png").convert_alpha()
+        midnight = pygame.transform.scale(midnight, screen_size)
+        
+        
+        exitFont = pygame.font.SysFont("Verdana", 60)
+        exitButton = exitFont.render(" X ", True, (255,0,0), (0,0,0))
+        exitRect = exitButton.get_rect()
+        exitRect.x = screen_size[0] - exitButton.get_width()
+        exitRect.y = 0
+        
+        font = pygame.font.SysFont("Verdana", 20)
+        text = self.planet["dayText"]
+        
+        lineRenders, lineRects = makeMultilineText(text, font)
+        
+        dayLength = self.planet["dayLength"]
+        timePassed = 0
+        time = 0
+        timeChunk = 0
+        
+        font = pygame.font.SysFont("Fixedsys", 50)
+        timer = font.render("{:.3f}°C".format(time), True, (255,255,255), (0,0,0,0.1)) 
+        timerRect = timer.get_rect()
+        
+        timerRect.x = screen_size[0] * 1/2 - timerRect.width/2
+        timerRect.y = screen_size[1] * 7/8
+        
+        #the time, in seconds, before the different day stages repeat
+        repeatTime = 20
+        dayComplete = False
+        
+        while running:
+            # poll for events
+            # pygame.QUIT event means the user clicked X to close your window
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type == pygame.MOUSEBUTTONDOWN: 
+                    if exitRect.collidepoint(pygame.mouse.get_pos()):
+                        running = False
+            
+            if timePassed % repeatTime < 5:
+                self.screen.blit(midnight, (0,0))
+            elif timePassed % repeatTime < 10:
+                self.screen.blit(dawn, (0,0))
+            elif timePassed % repeatTime < 15:
+                self.screen.blit(noon, (0,0))
+            else:
+                self.screen.blit(dusk, (0,0))
+            
+            if time < dayLength:
+                time += (dt/repeatTime) * dayLength
+            if time > dayLength: 
+                time = dayLength
+                dayComplete = True
+            if time >= timeChunk + dayLength /4:
+                timeChunk += dayLength /4
+                
+
+            
+            # flip() the display to put your work on screen
+            
+            for i, lineRender in enumerate(lineRenders):
+                self.screen.blit(lineRender, lineRects[i])
+            
+            timerMessage = ""
+            if dayComplete:
+                timerMessage += "1 day is "
+            timerMessage += "{:.2f} hrs".format(timeChunk)
+            #Also give it in days if it's longer than 2 Earth days
+            if timeChunk >= 48:
+                timerMessage += " = {:.2f} days".format(timeChunk/24)
+            if dayComplete:
+                " long"
+            
+            timer = font.render(timerMessage, True, (255,255,255), (0,0,0,0.1))
+            timerRect = timer.get_rect()
+            timerRect.x = screen_size[0] * 1/2 - timerRect.width/2
+            timerRect.y = screen_size[1] * 7/8
+
+            self.screen.blit(exitButton, exitRect)
+            self.screen.blit(timer, timerRect)
             pygame.display.update()
             # limits FPS to 60
             # dt is delta time in seconds since last frame, used for framerate-
