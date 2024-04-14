@@ -252,12 +252,12 @@ retryRect.y = 0.75*SCREEN_HEIGHT
 
 reset = 0
 
-background = pygame.image.load("flyingGame/assets/background.jpg")
+background = pygame.image.load("assets/background.jpg")
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
-playerImage = pygame.image.load("flyingGame/assets/player.png")
+playerImage = pygame.image.load("assets/player.png")
 playerImage = pygame.transform.scale(
     playerImage, (PLAYER_WIDTH, PLAYER_HEIGHT))
-asteroidImage = pygame.image.load("flyingGame/assets/asteroid.png")
+asteroidImage = pygame.image.load("assets/asteroid.png")
 asteroidImage = pygame.transform.scale(
     asteroidImage, (ASTROID_SIZE, ASTROID_SIZE))
 
