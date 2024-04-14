@@ -59,6 +59,7 @@ def resetGameState():
     astroidArray = []
     start = False
     distance = distanceTotal
+    pygame.display.update()
 
 
 def setupGameOver():
@@ -75,7 +76,6 @@ def setupGameOver():
                               2, SCREEN_HEIGHT/2 - textSurface.get_height()/2))
     window.blit(retrySurface, retryRect)
     pygame.display.update()
-    return retryRect
 
 
 async def main():
@@ -87,10 +87,11 @@ async def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_SPACE:
                     start = True
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN and alive == False:
                 if retryRect.collidepoint(pygame.mouse.get_pos()):
-                    setupGameOver()
+                    # setupGameOver()
                     resetGameState()
+                    drawMainScreen()
 
         if alive and distance > 0 and start:
             currentTime = pygame.time.get_ticks()
@@ -179,11 +180,13 @@ async def main():
                     break
 
         if alive == False:
-            retryRect = setupGameOver()
+            setupGameOver()
+            pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if retryRect.collidepoint(pygame.mouse.get_pos()):
                         resetGameState()
+                        drawMainScreen()
         if distance == 0:
             window.fill((0, 0, 0))
             textSurface = font.render(
@@ -240,5 +243,7 @@ retrySurface = font.render("RETRY", False, (255, 255, 255))
 retryRect = retrySurface.get_rect()
 retryRect.x = SCREEN_WIDTH/2 - retryRect.width/2
 retryRect.y = 0.75*SCREEN_HEIGHT
+
+reset = 0
 
 asyncio.run(main())
