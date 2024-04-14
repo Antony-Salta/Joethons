@@ -1,0 +1,42 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  background-image: url('../images/solarSystem.png');
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size: cover;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.title-box {
+  font-size: 50px;
+  text-align: center;
+  margin: 5%;
+  width: 90%;
+  padding: 0%;
+  border-radius: 30px;
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
+}
+
+.buttons-container {
+  width: 100%;
+  margin: 0%;
+  text-align: center;
+  justify-content: center;
+  margin-top: 30%;
+  float: left;
+}
+
+.planet-button {
+  font-size: 35px;
+  padding: 10px;
+  background-image: linear-gradient(to bottom right, purple, violet, dodgerblue, blue);
+  color: black;
+  margin: 5px;
+  border: 0;
+  border-radius: 10px;
+}
