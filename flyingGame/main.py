@@ -18,9 +18,10 @@ def astroidGen():
 
 
 def astroidsMove():
-    global astroidArray, astroidDirectionArray
+    global astroidArray, astroidDirectionArray, asteroidImage, window
     for i in range(0, len(astroidArray)):
-        pygame.draw.rect(window, (255, 255, 255), astroidArray[i])
+        pygame.draw.rect(window, (0, 0, 0), astroidArray[i])
+        window.blit(asteroidImage, astroidArray[i])
         astroidArray[i].move_ip(astroidDirectionArray[i], 4)
 
 
@@ -36,9 +37,11 @@ def astroidClear():
 
 
 def drawMainScreen():
-    global window, textSurface, player, distance, font, SCREEN_WIDTH
-    window.fill((0, 0, 0))
-    pygame.draw.rect(window, (0, 0, 255), player)
+    global window, textSurface, player, distance, font, SCREEN_WIDTH, background, playerImage
+    # window.fill((0, 0, 0))
+    window.blit(background, (0, 0))
+    pygame.draw.rect(window, (0, 0, 0), player)
+    window.blit(playerImage, player)
     distanceText = "Distance remaining: " + str(int(distance)) + "km"
     textSurface = font.render(
         distanceText, True, (255, 255, 255), (0, 0, 0))
@@ -63,8 +66,9 @@ def resetGameState():
 
 
 def setupGameOver():
-    global window, font, SCREEN_WIDTH, SCREEN_HEIGHT, textSurface, retryRect, retrySurface
-    window.fill((0, 0, 0))
+    global window, font, SCREEN_WIDTH, SCREEN_HEIGHT, textSurface, retryRect, retrySurface, background
+    # window.fill((0, 0, 0))
+    window.blit(background, (0, 0))
     retrySurface = font.render("RETRY", False, (255, 255, 255))
     retryRect = retrySurface.get_rect()
     retryRect.x = SCREEN_WIDTH/2 - retryRect.width/2
@@ -79,7 +83,7 @@ def setupGameOver():
 
 
 async def main():
-    global SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED, PROJECTILE_COOLDOWN_TIME, FPS, COUNTDOWN, CLOCK, PROJECTILE_SIZE, PLAYER_HEIGHT, PLAYER_SPEED, ASTROID_SPAWN_TIME, ASTROID_SIZE, LIVES, window, player, font, projectileArray, projectileCurrCooldown, projectileCooldownBool, astroidArray, astroidDirectionArray, timeForAstroidSpawn, distance, distanceTotal, distancePerMS, countdownStart, alive, run, start, dt, retrySurface, retryRect
+    global SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SPEED, PROJECTILE_COOLDOWN_TIME, FPS, COUNTDOWN, CLOCK, PROJECTILE_SIZE, PLAYER_HEIGHT, PLAYER_SPEED, ASTROID_SPAWN_TIME, ASTROID_SIZE, LIVES, window, player, font, projectileArray, projectileCurrCooldown, projectileCooldownBool, astroidArray, astroidDirectionArray, timeForAstroidSpawn, distance, distanceTotal, distancePerMS, countdownStart, alive, run, start, dt, retrySurface, retryRect, background, playerImage
     drawMainScreen()
     while run:
         for event in pygame.event.get():
@@ -102,8 +106,10 @@ async def main():
             else:
                 distance = 0
 
-            window.fill((0, 0, 0))
-            pygame.draw.rect(window, (0, 0, 255), player)
+            # window.fill((0, 0, 0))
+            window.blit(background, (0, 0))
+            pygame.draw.rect(window, (0, 0, 0), player)
+            window.blit(playerImage, player)
             distanceText = "Distance remaining: " + str(int(distance)) + "km"
             textSurface = font.render(
                 distanceText, True, (255, 255, 255), (0, 0, 0))
@@ -186,12 +192,12 @@ async def main():
                         resetGameState()
                         drawMainScreen()
         if distance == 0:
-            window.fill((0, 0, 0))
+            # window.fill((0, 0, 0))
             textSurface = font.render(
                 "Congratulations! You made it through the asteroids!", False, (255, 255, 255))
             window.blit(textSurface, (SCREEN_WIDTH/2 - textSurface.get_width() /
                         2, SCREEN_HEIGHT/2 - textSurface.get_height()/2))
-
+            window.blit(background, (0, 0))
         pygame.display.update()
         dt = CLOCK.tick(FPS)/1000.0
         await asyncio.sleep(0)
@@ -242,5 +248,14 @@ retryRect.x = SCREEN_WIDTH/2 - retryRect.width/2
 retryRect.y = 0.75*SCREEN_HEIGHT
 
 reset = 0
+
+background = pygame.image.load("flyingGame/assets/background.jpg")
+background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
+playerImage = pygame.image.load("flyingGame/assets/player.png")
+playerImage = pygame.transform.scale(
+    playerImage, (PLAYER_WIDTH, PLAYER_HEIGHT))
+asteroidImage = pygame.image.load("flyingGame/assets/asteroid.png")
+asteroidImage = pygame.transform.scale(
+    asteroidImage, (ASTROID_SIZE, ASTROID_SIZE))
 
 asyncio.run(main())
