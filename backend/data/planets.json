@@ -1,5 +1,16 @@
 {
-    "earth":{
+    "Earth": {
+        "Name": "Earth",
+        "featherSpeed": 100, 
+        "hammerSpeed": 400, 
+        "maxTemp": 57.2, 
+        "minTemp": -89.2, 
+        "dayLength": 24, 
+        "skyText": "\n        The Earth has one moon, just called The Moon.\n        creative...\n        The moon can only be seen from light reflecting off the Sun at us.\n        As the Moon's position changes, the way it looks changes.\n        The main stages are the new moon, crescent moon,\n        half moon, gibbon moon and full moon, going from nearly invisible to fully visible\n         \n        There's also last of the sunset at the bottom, making different \n        colours because of how theEarth's atmosphere scatters the light.", 
+        "gravityText": "Hammer time!\n        Gravity accelerates everything at the same rate.\n        So with no atmosphere to slow things down, the hammer and feather\n        would fall at the same speed.\n        But because the hammer is denser than the feather, it's affected by \n        air resistance less than the feather, so hits the ground earlier", 
+        "TemperatureText": "Nice and mild.\n        The highest temperature on Earth recordeed was 57.2C, \n        and the lowest temperature recorder was -89.2C.\n        Compared to other planets, this is very mild, \n        and part of why Earth is said to be in the \n        \"Goldilocks zone\" of the solar system.\n        Not too hot, or too cold!", 
+        "temperatureText": "Nice and mild.\n        The highest temperature on Earth recordeed was 57.2\u00b0C, \n        and the lowest temperature recorder was -89.2\u00b0C.\n        Compared to other planets, this is very mild, \n        and part of why Earth is said to be in the \n        \"Goldilocks zone\" of the solar system.\n        Not too hot, or too cold!", 
+        "dayText": "Yeah, there's 24 hours in a day,\n        this is far more interesting for the other planets.\n        A day is the amount of time it takes for a planet to rotate\n        about its axis. And a year is the amount of time that it takes for a \n        planet to rotate around the sun. A year is actually 365.24 days long.\n        That's why we have leap years,so that the calendar can catch up again.",
         "enter":{
             "atmosphere":45,
             "acid":false,
@@ -8,8 +19,18 @@
         },
         "exit":35,
         "distanceFromSun":1000
-    },
-    "mercury":{
+    }, 
+    "Mercury": {
+        "Name": "Mercury", 
+        "featherSpeed": 133, 
+        "hammerSpeed": 133, 
+        "maxTemp": 420, 
+        "minTemp": -170, 
+        "dayLength": 4224, 
+        "skyText": "Ah. It's a bit big, innit?\n                 Mercury's too small to have anything around it, being less than \n                 1.5x the size of our moon.\n                 You'll notice the sky is still black, even with the Sun out.\n                 That's because Mercury basically has no atmosphere, so there \n                 is no air to scatter the light and make a sky.", 
+        "gravityText": "Here, the gravity is a lot weaker at about 3.7 m/s^2\n                 so both of the objects fall slower. However, Mercury has almost no\n                 atmosphere, so there is no air resistance to slow down the feather.\n                 That means they fall together, and slowly.", 
+        "temperatureText": "Mercury's temperatures vary massively, because\n                 it's so close to the Sun, It can heat up 420\u00b0C during its long days.\n                 But because it has no atmosphere to hold heat in,\n                 the temperature can plummet to -170\u00b0C when its out of the sun.\n                 It's like an extreme version of the deserts on Earth.", 
+        "dayText": "Mercury's days are extremely long. In fact, \n                 they are longer than a year on Mercury!\n                 A Mercury day takes 176 Earth days to complete.\n                 A year on Mercury is only 88 days, so a day on Mercury takes\n                 nearly twice as long!\n                 \n                 Also, Mercury has a very elliptical orbit, meaning it orbits in\n                 an oval around the Sun.\n                 This means that when Mercury is close to the Sun, \n                 it can actually stop or move slighly backward across the sky ,like a less \n                 extreme version of noon going on for double the time here.",
         "enter": {
             "atmosphere":50,
             "acid": false,
