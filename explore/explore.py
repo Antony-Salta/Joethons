@@ -31,8 +31,8 @@ planet = {
         Not too hot, or too cold!""",
         
         "temperatureText": """Nice and mild.
-        The highest temperature on Earth recordeed was 57.2C, 
-        and the lowest temperature recorder was -89.2C.
+        The highest temperature on Earth recordeed was 57.2°C, 
+        and the lowest temperature recorder was -89.2°C.
         Compared to other planets, this is very mild, 
         and part of why Earth is said to be in the 
         "Goldilocks zone" of the solar system.
@@ -44,11 +44,41 @@ planet = {
         about its axis. And a year is the amount of time that it takes for a 
         planet to rotate around the sun. A year is actually 365.24 days long.
         That's why we have leap years,so that the calendar can catch up again."""},
-    "Mercury" : {"Name": "Earth", "featherSpeed" : 133, "hammerSpeed" : 133, "maxTemp" : 420, "minTemp": -170, "dayLength": 176 * 24}
+    "Mercury" : {"Name": "Mercury", "featherSpeed" : 133, "hammerSpeed" : 133, "maxTemp" : 420, "minTemp": -170, "dayLength": 176 * 24,
+                 "skyText" : """Ah. It's a bit big, innit?
+                 Mercury's too small to have anything around it, being less than 
+                 1.5x the size of our moon.
+                 You'll notice the sky is still black, even with the Sun out.
+                 That's because Mercury basically has no atmosphere, so there 
+                 is no air to scatter the light and make a sky.""",
+                 
+                 "gravityText": """Here, the gravity is a lot weaker at about 3.7 m/s^2
+                 so both of the objects fall slower. However, Mercury has almost no
+                 atmosphere, so there is no air resistance to slow down the feather.
+                 That means they fall together, and slowly.""",
+                  
+                 "temperatureText": """Mercury's temperatures vary massively, because
+                 it's so close to the Sun, It can heat up 420°C during its long days.
+                 But because it has no atmosphere to hold heat in,
+                 the temperature can plummet to -170°C when its out of the sun.
+                 It's like an extreme version of the deserts on Earth.""",
+                 
+                 "dayText" : """Mercury's days are extremely long. In fact, 
+                 they are longer than a year on Mercury!
+                 A Mercury day takes 176 Earth days to complete.
+                 A year on Mercury is only 88 days, so a day on Mercury takes
+                 nearly twice as long!
+                 
+                 Also, Mercury has a very elliptical orbit, meaning it orbits in
+                 an oval around the Sun.
+                 This means that when Mercury is close to the Sun, 
+                 it can actually stop or move slighly backward across the sky ,like how 
+                 noon went on for extra long."""
+                 }
 }# this name thing is dumb, but i only pass the inner dictionary in and I need the name there
 
 #TODO, change this to read from a file or something
-chosenPlanet = planet["Earth"]
+chosenPlanet = planet["Mercury"]
 
 pygame.init()
 screen_size = (1280,720)

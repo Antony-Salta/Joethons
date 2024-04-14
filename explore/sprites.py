@@ -1,11 +1,13 @@
 import pygame
 
+screen_size = (1280,720)
+
 ###Returns the Surface object list and the associated Rect list  
 def makeMultilineText(text, font):
     textRender = font.render(text, True, (255,255,255), (0,0,0,0.3))
     textRect = textRender.get_rect()
     textRect.x= 30
-    textRect.y = 50
+    textRect.y = screen_size[1]/2
     lines = text.split("\n")
     line_height = textRect.height
     lineRenders = [] 
@@ -84,7 +86,7 @@ class Telescope (Interactable):
             return False
         self.interacted = True  
         
-        screen_size = (1280,720)
+
         clock = pygame.time.Clock()
         running = True
         timePassed = 0
@@ -432,8 +434,12 @@ class Clock(Interactable):
         timerRect.y = screen_size[1] * 7/8
         
         #the time, in seconds, before the different day stages repeat
-        repeatTime = 20
+        if self.planet["Name"] == "Mercury":
+            repeatTime = 25
+        else:
+            repeatTime = 20
         dayComplete = False
+        noon
         
         while running:
             # poll for events
@@ -449,7 +455,7 @@ class Clock(Interactable):
                 self.screen.blit(midnight, (0,0))
             elif timePassed % repeatTime < 10:
                 self.screen.blit(dawn, (0,0))
-            elif timePassed % repeatTime < 15:
+            elif timePassed % repeatTime < repeatTime -5:
                 self.screen.blit(noon, (0,0))
             else:
                 self.screen.blit(dusk, (0,0))
@@ -459,8 +465,8 @@ class Clock(Interactable):
             if time > dayLength: 
                 time = dayLength
                 dayComplete = True
-            if time >= timeChunk + dayLength /4:
-                timeChunk += dayLength /4
+            if time >= timeChunk + dayLength /(repeatTime / 5): # This just avoids having to have extra if statements for my mercury joke
+                timeChunk += dayLength /(repeatTime /5)
                 
 
             

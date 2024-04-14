@@ -12,5 +12,7 @@ Hammer from: <a href="https://www.vecteezy.com/vector-art/24212734-pixel-art-ham
 Horizon from: https://www.wallpaperflare.com/horizon-digital-art-pixels-pixel-art-wallpaper-ureif/download/2560x1080
 Feather from minecraft,
 clock from minecraft
+Mercury ground texture comes from andesite texture.
 thermometer from: https://pixelartmaker.com/art/c45de78f5f3de87
 pixel art: https://pixelartmaker.com/art/ff79920c15f08cd
+Close up sun from: https://pixelartmaker.com/art/67c5bb4f1a79b43
