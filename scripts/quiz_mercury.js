@@ -111,7 +111,7 @@ function concludeQuiz() {
   resultsElement.classList.remove('hide');
   resultsElement.innerHTML = `
       <h2>Quiz Completed!</h2>
-      <p>Your final budget: ${budget} out of ${shuffledQuestions.length}</p>
+      <p>Your final budget: ${budget}</p>
       <button onclick="restartQuiz()">Build your Ship</button>
   `;
   quizAppElement.appendChild(resultsElement);

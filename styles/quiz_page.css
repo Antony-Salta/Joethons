@@ -56,9 +56,20 @@ body {
   
 }
 
-#gif-div {
+#gif-div-earth {
 
   background-image: url(../images/earthSpin.gif);
+  background-size: cover;
+  width: 60%;
+  height:18%;
+  margin: 10%;
+  padding: 10%;
+  border-radius: 30px;
+}
+
+#gif-div-mercury {
+
+  background-image: url(../images/mercurySpin.gif);
   background-size: cover;
   width: 60%;
   height:18%;
